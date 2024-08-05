@@ -73,7 +73,7 @@ struct KeyboardView: View {
               setting.isNote ? Colors.Gray : Colors.Blue
             )
         }
-        .disabled(sudoku.getFrequency(of: num) >= 9)
+        .opacity(sudoku.getFrequency(of: num) >= 9 ? 0 : 1)
         .frame(width: Screen.cellWidth, height: Screen.cellWidth)
         .padding(.all, 0)
       }

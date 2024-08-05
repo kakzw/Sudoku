@@ -225,6 +225,9 @@ final class SudokuModel: ObservableObject {
     /// predefined cell (cell with input type of system) cannot be deleted
     if grid[row][col].inputType == .sys { return }
     
+    /// update frequency before deletion
+    let index = grid[row][col].val - 1
+    numFrequency[index] -= 1
     /// perform deletion
     grid[row][col].val = UNDEFINED
   }
@@ -255,6 +258,8 @@ final class SudokuModel: ObservableObject {
         /// (assign predefined value and change input type to system)
         if solution[row][col].inputType == .sys {
           grid[row][col] = solution[row][col]
+          let index = grid[row][col].val - 1
+          numFrequency[index] += 1
         }
       }
     }
