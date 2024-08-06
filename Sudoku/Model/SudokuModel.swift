@@ -49,7 +49,7 @@ final class SudokuModel: ObservableObject {
   
   init(difficulty: Difficulty) {
     self.difficulty = difficulty
-    let sudoku = Solutions().getSudoku(difficulty: difficulty)
+    let sudoku = Solutions().getRandomSudoku(difficulty: difficulty)
     self.solution = sudoku
     self.grid = []
     loadGrid(solution: sudoku)  /// load grid with the sudoku puzzle

@@ -28,10 +28,10 @@ final class Solutions {
   
   // MARK: - Public Functions
   
-  /// Returns a sudoku puzzle based on specified difficulty level
+  /// Returns a random sudoku puzzle based on specified difficulty level
   /// - Parameter difficulty: difficulty level of desired sudoku puzzle
   /// - Returns: 2D array of cell representing sudoku grid for specified difficulty
-  func getSudoku(difficulty: Difficulty) -> [[Cell]] {
+  func getRandomSudoku(difficulty: Difficulty) -> [[Cell]] {
     switch difficulty {
     case .easy:
       let index = Int.random(in: 0..<easySudoku.count)
@@ -44,6 +44,20 @@ final class Solutions {
       return hardSudoku[index]
     }
   }
+  
+  // MARK: - List of easy sudoku
+  
+  private let easy1: [[Cell]] = [
+    [Cell(val: 1, inputType: .sys), Cell(val: 5, inputType: .sys), Cell(val: 9, inputType: .user), Cell(val: 3, inputType: .user), Cell(val: 4, inputType: .sys), Cell(val: 2, inputType: .sys), Cell(val: 7, inputType: .user), Cell(val: 8, inputType: .user), Cell(val: 6, inputType: .sys)],
+    [Cell(val: 2, inputType: .sys), Cell(val: 7, inputType: .sys), Cell(val: 4, inputType: .sys), Cell(val: 5, inputType: .sys), Cell(val: 6, inputType: .sys), Cell(val: 8, inputType: .user), Cell(val: 3, inputType: .user), Cell(val: 1, inputType: .sys), Cell(val: 9, inputType: .user)],
+    [Cell(val: 8, inputType: .user), Cell(val: 3, inputType: .user), Cell(val: 6, inputType: .sys), Cell(val: 1, inputType: .user), Cell(val: 9, inputType: .user), Cell(val: 7, inputType: .sys), Cell(val: 4, inputType: .sys), Cell(val: 5, inputType: .user), Cell(val: 2, inputType: .sys)],
+    [Cell(val: 7, inputType: .user), Cell(val: 1, inputType: .sys), Cell(val: 8, inputType: .user), Cell(val: 9, inputType: .user), Cell(val: 2, inputType: .user), Cell(val: 6, inputType: .user), Cell(val: 5, inputType: .user), Cell(val: 4, inputType: .sys), Cell(val: 3, inputType: .user)],
+    [Cell(val: 4, inputType: .user), Cell(val: 9, inputType: .user), Cell(val: 3, inputType: .user), Cell(val: 8, inputType: .user), Cell(val: 5, inputType: .sys), Cell(val: 1, inputType: .user), Cell(val: 6, inputType: .user), Cell(val: 2, inputType: .user), Cell(val: 7, inputType: .user)],
+    [Cell(val: 5, inputType: .user), Cell(val: 6, inputType: .sys), Cell(val: 2, inputType: .user), Cell(val: 4, inputType: .sys), Cell(val: 7, inputType: .user), Cell(val: 3, inputType: .sys), Cell(val: 1, inputType: .sys), Cell(val: 9, inputType: .sys), Cell(val: 8, inputType: .user)],
+    [Cell(val: 3, inputType: .user), Cell(val: 2, inputType: .sys), Cell(val: 1, inputType: .user), Cell(val: 6, inputType: .sys), Cell(val: 8, inputType: .user), Cell(val: 5, inputType: .sys), Cell(val: 9, inputType: .sys), Cell(val: 7, inputType: .user), Cell(val: 4, inputType: .user)],
+    [Cell(val: 9, inputType: .sys), Cell(val: 8, inputType: .sys), Cell(val: 5, inputType: .sys), Cell(val: 7, inputType: .user), Cell(val: 3, inputType: .sys), Cell(val: 4, inputType: .user), Cell(val: 2, inputType: .user), Cell(val: 6, inputType: .sys), Cell(val: 1, inputType: .user)],
+    [Cell(val: 6, inputType: .user), Cell(val: 4, inputType: .sys), Cell(val: 7, inputType: .user), Cell(val: 2, inputType: .sys), Cell(val: 1, inputType: .sys), Cell(val: 9, inputType: .sys), Cell(val: 8, inputType: .sys), Cell(val: 3, inputType: .sys), Cell(val: 5, inputType: .user)]
+  ]
   
   // MARK: - List of medium sudoku
   
@@ -58,4 +72,17 @@ final class Solutions {
     [Cell(val: 3, inputType: .user), Cell(val: 7, inputType: .sys), Cell(val: 4, inputType: .user), Cell(val: 6, inputType: .user), Cell(val: 5, inputType: .sys), Cell(val: 1, inputType: .user), Cell(val: 9, inputType: .user), Cell(val: 2, inputType: .sys), Cell(val: 8, inputType: .sys)],
     [Cell(val: 1, inputType: .user), Cell(val: 8, inputType: .sys), Cell(val: 5, inputType: .user), Cell(val: 2, inputType: .user), Cell(val: 4, inputType: .user), Cell(val: 9, inputType: .sys), Cell(val: 7, inputType: .sys), Cell(val: 6, inputType: .sys), Cell(val: 3, inputType: .user)]
   ]
+  
+  // MARK: - Test Functions
+  
+  func getSudoku(difficulty: Difficulty) -> [[[Cell]]] {
+    switch difficulty {
+    case .easy:
+      return easySudoku
+    case .medium:
+      return mediumSudoku
+    case .hard:
+      return hardSudoku
+    }
+  }
 }
