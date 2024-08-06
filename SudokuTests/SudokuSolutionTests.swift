@@ -120,6 +120,8 @@ final class SudokuSolutionTests: XCTestCase {
   }
   
   /// Validate all 3x3 squares in sudoku
+  /// - Complexity: O(1) considering all sudoku puzzle is limited to 9x9 and
+  ///               this function iterates through each cell only once
   /// - Parameter sudoku: 2D array representing sudoku
   /// - Returns: boolean indicating whether each 3x3 square in sudoku contains numbers 1 through 9 exactly once
   private func validateSquare(of sudoku: [[Cell]]) -> Bool {
