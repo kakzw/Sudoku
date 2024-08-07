@@ -9,7 +9,7 @@ import SwiftUI
 
 struct KeyboardView: View {
   @ObservedObject var sudoku: SudokuModel
-  @ObservedObject var setting = Setting.shared
+  @ObservedObject var settings = Settings.shared
   
   var body: some View {
     VStack {
@@ -42,7 +42,7 @@ struct KeyboardView: View {
       
       // MARK: Note Button
       Button {
-        setting.isNote.toggle()
+        settings.isNote.toggle()
       } label: {
         OptionBtnView(img: "square.and.pencil", text: "Note")
       }
@@ -51,7 +51,7 @@ struct KeyboardView: View {
       
       // MARK: Hint Button
       Button {
-        // TODO: add a button that shows hint
+        sudoku.autoAddNote()
       } label: {
         OptionBtnView(img: "lightbulb", text: "Hint")
       }
@@ -68,12 +68,12 @@ struct KeyboardView: View {
           insertVal(num)
         } label: {
           Text("\(num)")
-            .font(.system(size: fontSize * 1.2))
+            .font(.system(size: FontSize.cell * 1.2))
             .foregroundStyle(
-              setting.isNote ? Colors.Gray : Colors.Blue
+              settings.isNote ? Colors.Gray : Colors.Blue
             )
         }
-        .opacity(sudoku.getFrequency(of: num) >= 9 ? 0 : 1)
+        .opacity(settings.hideUsedNum && sudoku.getFrequency(of: num) >= 9 ? 0 : 1)
         .frame(width: Screen.cellWidth, height: Screen.cellWidth)
         .padding(.all, 0)
       }

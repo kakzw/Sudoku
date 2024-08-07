@@ -8,10 +8,40 @@
 import SwiftUI
 
 struct ContentView: View {
-  private var sudoku = SudokuModel(difficulty: .medium)
+  @State private var showDifficulties = false
   
   var body: some View {
-    GameView(sudoku: sudoku)
+    NavigationStack {
+      ZStack {
+        /// when selecting difficulties
+        /// make the background darker
+        if showDifficulties {
+          Color(.systemGray)
+            .ignoresSafeArea()
+            .onTapGesture {
+              /// if background is tapped while selecting difficulties
+              /// hide difficulty selection view
+              showDifficulties = false
+            }
+        }
+        
+        MenuView(showDifficulties: $showDifficulties)
+          .opacity(showDifficulties ? 0.4 : 1)
+        
+        /// when new game button is tapped
+        /// display difficulties to select from
+        if showDifficulties {
+          VStack {
+            Spacer()
+            DifficultySelectionView()
+              .padding(.horizontal)
+              .shadow(radius: 10)
+            Spacer()
+              .frame(height: 50)
+          }
+        }
+      }
+    }
   }
 }
 

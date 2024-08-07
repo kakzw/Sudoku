@@ -15,15 +15,25 @@ struct InfoBarView: View {
   
   var body: some View {
     HStack {
+      // MARK: Difficulty Text
       InfoContentView(title: "Difficulty", text: "\(sudoku.getDifficulty().rawValue)")
         .padding(.trailing)
-      InfoContentView(title: "Errors", text: "\(sudoku.getError())/3")
-        .padding(.leading)
+      
+      // MARK: Error Text
+      if Settings.shared.limitErrors {
+        InfoContentView(title: "Errors", text: "\(sudoku.getError())/3")
+          .padding(.leading)
+      }
+      
       Spacer()
-      InfoContentView(title: "Time", text: "\(formatTime(time))")
-        .onReceive(timer) { _ in
-          time += 1
-        }
+      
+      // MARK: Timer
+      if Settings.shared.useTimer {
+        InfoContentView(title: "Time", text: "\(formatTime(time))")
+          .onReceive(timer) { _ in
+            time += 1
+          }
+      }
     }
   }
   

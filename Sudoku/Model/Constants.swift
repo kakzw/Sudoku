@@ -8,7 +8,6 @@
 import SwiftUI
 
 let UNDEFINED: Int = -1
-let fontSize: CGFloat = 28
 
 /// Enumeration to hold screen related constants
 enum Screen {
@@ -23,6 +22,14 @@ enum Screen {
   static let cellWidth: CGFloat = UIScreen.main.bounds.size.width * 0.95 / 9
   /// thickness of the grid lines in sudoku board
   static let lineThickness: CGFloat = 2
+}
+
+/// Enumeration to hold font size related constants
+enum FontSize {
+  static let appTitle: CGFloat = 80
+  static let cell: CGFloat = 28
+  static let text: CGFloat = 20
+  static let description: CGFloat = 12
 }
 
 /// Enumeration to hold color related constants

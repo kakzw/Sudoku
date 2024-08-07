@@ -41,7 +41,6 @@ final class SudokuModel: ObservableObject {
   private var solution: [[Cell]]
   private var activeCell: (row: Int, col: Int)? /// currently selected cell
   private var prevActionStack = [CellState]() /// stack for undo actions
-  
   private var errorCount = 0
   private var numFrequency = Array(repeating: 0, count: 9)
   
@@ -71,15 +70,15 @@ final class SudokuModel: ObservableObject {
     
     if cell.inputType == .sys {
       return AnyView(Text("\(cell.val)")
-        .font(.system(size: fontSize))
+        .font(.system(size: FontSize.cell))
         .foregroundStyle(Color(.label)))
     } else if cell.inputType == .user {
       return AnyView(Text("\(cell.val)")
-        .font(.system(size: fontSize))
+        .font(.system(size: FontSize.cell))
         .foregroundStyle(Colors.Golden))
     } else {
       return AnyView(Text("\(cell.val)")
-        .font(.system(size: fontSize))
+        .font(.system(size: FontSize.cell))
         .foregroundStyle(Color(.systemPink)))
     }
   }
@@ -115,7 +114,7 @@ final class SudokuModel: ObservableObject {
     prevActionStack.append(currentState)
     
     /// if inserting the value as note
-    if Setting.shared.isNote {
+    if Settings.shared.isNote {
       /// if value inserted as note is already in the note, remove it
       if cell.note.contains(val) {
         grid[row][col].note.remove(val)
@@ -128,13 +127,19 @@ final class SudokuModel: ObservableObject {
     /// if the value is wrong, set input type to error and increment error count
     if val == solution[row][col].val {
       grid[row][col].inputType = .user
-      grid[row][col].note.removeAll()
       numFrequency[val-1] += 1
     } else {
       grid[row][col].inputType = .error
       errorCount += 1
-      grid[row][col].note.removeAll()
     }
+    
+    if Settings.shared.autoRemoveNotes {
+      /// auto removes the value inserted from notes in same row, column and square
+      removeValFromNote(val: val, row: row, col: col)
+    }
+    
+    /// remove notes from the active cell
+    grid[row][col].note.removeAll()
     
     /// update the cell with new value
     grid[row][col].val = val
@@ -151,6 +156,17 @@ final class SudokuModel: ObservableObject {
     grid[prevState.row][prevState.col].inputType = prevState.inputType
     grid[prevState.row][prevState.col].note = prevState.note
     numFrequency = prevState.numFrequency
+  }
+  
+  /// Automatically adds possible values as notes to all cells that have not been entered
+  func autoAddNote() {
+    for row in 0..<9 {
+      for col in 0..<9 {
+        if grid[row][col].val == UNDEFINED {
+          addNote(row: row, col: col)
+        }
+      }
+    }
   }
   
   /// Set the active cell
@@ -171,15 +187,17 @@ final class SudokuModel: ObservableObject {
     if prev?.row == activeCell?.row && prev?.col == activeCell?.col {
       activeCell = nil
     } else {
-      /// highlight cells in the same row as selected cell
-      highlightRow(row)
-      /// highlight cells in the same column
-      highlightCol(col)
-      /// highlight cells in the same square
-      highlightSquare(row: row, col: col)
+      if Settings.shared.highlightAreas {
+        /// highlight cells in the same row as selected cell
+        highlightRow(row)
+        /// highlight cells in the same column
+        highlightCol(col)
+        /// highlight cells in the same square
+        highlightSquare(row: row, col: col)
+      }
       
       /// if selected cell has value in it, highlight cells that has identical values
-      if grid[row][col].val != UNDEFINED {
+      if Settings.shared.highlightIdenticalNum && grid[row][col].val != UNDEFINED {
         highlightSameVal(grid[row][col].val)
       }
       
@@ -361,6 +379,70 @@ final class SudokuModel: ObservableObject {
           grid[row][col].backgroundColor = Colors.DeepBlue
         }
       }
+    }
+  }
+  
+  /// Removes a specified value from the notes of all cells in the same row, column, and 3x3 square
+  /// - Parameters:
+  ///   - val: value to be removed from the notes
+  ///   - row: row of the cell where the value was placed
+  ///   - col: column of the cell where the value was placed
+  private func removeValFromNote(val: Int, row: Int, col: Int) {
+    /// remove the value from notes in the same row
+    for i in 0..<9 {
+      grid[row][i].note.remove(val)
+    }
+    
+    /// remove the value from notes in the same column
+    for i in 0..<9 {
+      grid[i][col].note.remove(val)
+    }
+    
+    /// remove the value from notes in the same square
+    /// calculate the starting row and column indices of the square
+    let row: Int = (row / 3) * 3
+    let col: Int = (col / 3) * 3
+    /// iterate through each cell in the square
+    for i in 0..<3 {
+      for j in 0..<3 {
+        grid[row+i][col+j].note.remove(val)
+      }
+    }
+  }
+  
+  /// Adds possible values as notes to a specified cell,
+  /// excluding values already present in the same row, column or square
+  /// - Parameters:
+  ///   - row: row of the cell to add notes to
+  ///   - col: column of the cell to add notes to
+  private func addNote(row: Int, col: Int) {
+    /// initialize a set with all possible values (1-9)
+    var numSet: Set<Int> = [1,2,3,4,5,6,7,8,9]
+    
+    /// remove values already present in the same row from the set of possible values
+    for i in 0..<9 {
+      numSet.remove(grid[row][i].val)
+    }
+    
+    /// remove values already present in the same column from the set of possible values
+    for i in 0..<9 {
+      numSet.remove(grid[i][col].val)
+    }
+    
+    /// remove values already present in the same 3x3 square from the set of possible values
+    /// calculate the starting row and column indices of the square
+    let squareRow: Int = (row / 3) * 3
+    let squareCol: Int = (col / 3) * 3
+    for i in 0..<3 {
+      for j in 0..<3 {
+        numSet.remove(grid[squareRow+i][squareCol+j].val)
+      }
+    }
+    
+    /// add the remaining possible values as notes to the cell
+    grid[row][col].note = []
+    for num in numSet {
+      grid[row][col].note.insert(num)
     }
   }
 }

@@ -7,23 +7,34 @@
 
 import SwiftUI
 
-enum Difficulty: String {
+enum Difficulty: String, Identifiable, CaseIterable {
   case easy = "Easy"
   case medium = "Medium"
   case hard = "Hard"
+  case expert = "Expert"
+  case master = "Master"
+  case extreme = "Extreme"
+  
+  var id: String { self.rawValue }
 }
 
 final class Solutions {
   private var easySudoku: [[[Cell]]]
   private var mediumSudoku: [[[Cell]]]
   private var hardSudoku: [[[Cell]]]
+  private var expertSudoku: [[[Cell]]]
+  private var masterSudoku: [[[Cell]]]
+  private var extremeSudoku: [[[Cell]]]
   
   // - MARK: - Initialization
   
   init() {
-    self.easySudoku = []
+    self.easySudoku = [easy1]
     self.mediumSudoku = [medium1]
     self.hardSudoku = []
+    self.expertSudoku = []
+    self.masterSudoku = []
+    self.extremeSudoku = []
   }
   
   // MARK: - Public Functions
@@ -42,6 +53,15 @@ final class Solutions {
     case .hard:
       let index = Int.random(in: 0..<hardSudoku.count)
       return hardSudoku[index]
+    case .expert:
+      let index = Int.random(in: 0..<expertSudoku.count)
+      return expertSudoku[index]
+    case .master:
+      let index = Int.random(in: 0..<masterSudoku.count)
+      return masterSudoku[index]
+    case .extreme:
+      let index = Int.random(in: 0..<extremeSudoku.count)
+      return extremeSudoku[index]
     }
   }
   
@@ -83,6 +103,12 @@ final class Solutions {
       return mediumSudoku
     case .hard:
       return hardSudoku
+    case .expert:
+      return expertSudoku
+    case .master:
+      return masterSudoku
+    case .extreme:
+      return extremeSudoku
     }
   }
 }
