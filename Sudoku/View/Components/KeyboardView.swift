@@ -26,7 +26,8 @@ struct KeyboardView: View {
       Button {
         sudoku.undo()
       } label: {
-        OptionBtnView(img: "arrow.counterclockwise", text: "Undo")
+        OptionBtnView(img: "arrow.counterclockwise", 
+                      text: "keyboard.undo")
       }
       
       Spacer()
@@ -35,7 +36,8 @@ struct KeyboardView: View {
       Button {
         sudoku.deleteActiveCell()
       } label: {
-        OptionBtnView(img: "eraser.line.dashed", text: "Delete")
+        OptionBtnView(img: "eraser.line.dashed", 
+                      text: "keyboard.delete")
       }
       
       Spacer()
@@ -44,7 +46,8 @@ struct KeyboardView: View {
       Button {
         settings.isNote.toggle()
       } label: {
-        OptionBtnView(img: "square.and.pencil", text: "Note")
+        OptionBtnView(img: "square.and.pencil", 
+                      text: "keyboard.note")
       }
       
       Spacer()
@@ -53,7 +56,8 @@ struct KeyboardView: View {
       Button {
         sudoku.autoAddNote()
       } label: {
-        OptionBtnView(img: "lightbulb", text: "Hint")
+        OptionBtnView(img: "lightbulb", 
+                      text: "keyboard.hint")
       }
       
       Spacer()
@@ -95,7 +99,7 @@ struct KeyboardView: View {
 
 struct OptionBtnView: View {
   var img: String
-  var text: String
+  var text: LocalizedStringResource
   
   private let btnSize: CGFloat = Screen.cellWidth / 2
   
@@ -104,7 +108,7 @@ struct OptionBtnView: View {
       Image(systemName: "\(img)")
         .frame(width: btnSize)
         .foregroundStyle(Colors.Golden)
-      Text("\(text)")
+      Text(text)
         .foregroundStyle(Color(.label))
         .font(.system(size: btnSize))
     }

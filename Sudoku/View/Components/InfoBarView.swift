@@ -16,12 +16,12 @@ struct InfoBarView: View {
   var body: some View {
     HStack {
       // MARK: Difficulty Text
-      InfoContentView(title: "Difficulty", text: "\(sudoku.getDifficulty().rawValue)")
+      InfoContentView(title: "info.difficulty", text: "\(NSLocalizedString(sudoku.getDifficulty().rawValue, comment: ""))")
         .padding(.trailing)
       
       // MARK: Error Text
       if Settings.shared.limitErrors {
-        InfoContentView(title: "Errors", text: "\(sudoku.getError())/3")
+        InfoContentView(title: "info.error", text: "\(sudoku.getError())/3")
           .padding(.leading)
       }
       
@@ -29,7 +29,7 @@ struct InfoBarView: View {
       
       // MARK: Timer
       if Settings.shared.useTimer {
-        InfoContentView(title: "Time", text: "\(formatTime(time))")
+        InfoContentView(title: "info.time", text: "\(formatTime(time))")
           .onReceive(timer) { _ in
             time += 1
           }
@@ -53,7 +53,7 @@ struct InfoBarView: View {
 }
 
 struct InfoContentView: View {
-  var title: String
+  var title: LocalizedStringResource
   var text: String
   
   var body: some View {

@@ -2,13 +2,34 @@
   "sourceLanguage" : "en",
   "strings" : {
     " " : {
-
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : ""
+          }
+        }
+      }
     },
     "%@" : {
-
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : ""
+          }
+        }
+      }
     },
     "%lld" : {
-
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : ""
+          }
+        }
+      }
     },
     "app.title" : {
       "extractionState" : "manual",
@@ -17,6 +38,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Sudoku"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "数独"
           }
         }
       }
@@ -29,6 +56,114 @@
             "state" : "translated",
             "value" : "Back"
           }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "戻る"
+          }
+        }
+      }
+    },
+    "difficulty.easy" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Easy"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "やさしい"
+          }
+        }
+      }
+    },
+    "difficulty.expert" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Expert"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "エキスパート"
+          }
+        }
+      }
+    },
+    "difficulty.extreme" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Extreme"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "エクストリーム"
+          }
+        }
+      }
+    },
+    "difficulty.hard" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hard"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "むずかしい"
+          }
+        }
+      }
+    },
+    "difficulty.master" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Master"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "マスター"
+          }
+        }
+      }
+    },
+    "difficulty.medium" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Medium"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ふつう"
+          }
         }
       }
     },
@@ -39,6 +174,131 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Sudoku"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "数独"
+          }
+        }
+      }
+    },
+    "info.difficulty" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Difficulty"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "難易度"
+          }
+        }
+      }
+    },
+    "info.error" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Errors"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "間違い"
+          }
+        }
+      }
+    },
+    "info.time" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Time"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "タイム"
+          }
+        }
+      }
+    },
+    "keyboard.delete" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Delete"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "消す"
+          }
+        }
+      }
+    },
+    "keyboard.hint" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hint"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ヒント"
+          }
+        }
+      }
+    },
+    "keyboard.note" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Note"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "メモ"
+          }
+        }
+      }
+    },
+    "keyboard.undo" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Undo"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "元に戻す"
           }
         }
       }
@@ -51,6 +311,12 @@
             "state" : "translated",
             "value" : "New Game"
           }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "新規ゲーム"
+          }
         }
       }
     },
@@ -61,6 +327,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Highlight Areas"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "領域をハイライト"
           }
         }
       }
@@ -73,6 +345,12 @@
             "state" : "translated",
             "value" : "Highlight the block, column, and row for a selected cell"
           }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "選択したマスがあるブロック、縦の列、横の列をハイライトします"
+          }
         }
       }
     },
@@ -83,6 +361,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Error Limit"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "間違いの上限"
           }
         }
       }
@@ -95,6 +379,12 @@
             "state" : "translated",
             "value" : "Limit the number of possible mistakes to 3 per game"
           }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "間違いの上限を1ゲームあたり3回までに制限します"
+          }
         }
       }
     },
@@ -105,6 +395,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Highlight Identical Numbers"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "同じ数字をハイライト"
           }
         }
       }
@@ -117,6 +413,12 @@
             "state" : "translated",
             "value" : "When selecting a cell with a number, highlight the same numbers throughout the grid"
           }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "数字の入ったマスを選択すると、それと同じ数字がハイライトされます"
+          }
         }
       }
     },
@@ -127,6 +429,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Auto-Remove Notes"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "メモを自動的に削除"
           }
         }
       }
@@ -139,6 +447,12 @@
             "state" : "translated",
             "value" : "Remove a number from all notes when it's placed in a cell"
           }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "数字がマスに入力されると、その数字がすべてのメモから削除されます"
+          }
         }
       }
     },
@@ -149,6 +463,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Timer"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "タイマー"
           }
         }
       }
@@ -161,6 +481,12 @@
             "state" : "translated",
             "value" : "Display timer while playing the game"
           }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "タイマーを表示します"
+          }
         }
       }
     },
@@ -171,6 +497,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Settings"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "設定"
           }
         }
       }
@@ -183,6 +515,12 @@
             "state" : "translated",
             "value" : "Hide Used Numbers"
           }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "使った数字を非表示"
+          }
         }
       }
     },
@@ -193,6 +531,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Hide numbers that have been placed in 9 different cells"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "既に異なる9マスに入れられている数字を非表示にします"
           }
         }
       }

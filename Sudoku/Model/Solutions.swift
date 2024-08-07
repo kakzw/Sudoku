@@ -8,12 +8,12 @@
 import SwiftUI
 
 enum Difficulty: String, Identifiable, CaseIterable {
-  case easy = "Easy"
-  case medium = "Medium"
-  case hard = "Hard"
-  case expert = "Expert"
-  case master = "Master"
-  case extreme = "Extreme"
+  case easy = "difficulty.easy"
+  case medium = "difficulty.medium"
+  case hard = "difficulty.hard"
+  case expert = "difficulty.expert"
+  case master = "difficulty.master"
+  case extreme = "difficulty.extreme"
   
   var id: String { self.rawValue }
 }

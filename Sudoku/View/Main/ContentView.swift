@@ -41,6 +41,9 @@ struct ContentView: View {
           }
         }
       }
+      .onAppear {
+        showDifficulties = false
+      }
     }
   }
 }

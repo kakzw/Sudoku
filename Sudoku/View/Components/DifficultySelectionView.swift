@@ -21,7 +21,7 @@ struct DifficultySelectionView: View {
             difficulty = ele
             startGame = true
           } label: {
-            Text(ele.rawValue)
+            Text(NSLocalizedString(ele.rawValue, comment: ""))
               .foregroundColor(Colors.Blue)
           }
           if ele != Difficulty.allCases.last {
