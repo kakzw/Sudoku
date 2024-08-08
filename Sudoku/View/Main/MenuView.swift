@@ -21,6 +21,7 @@ struct MenuView: View {
         .shadow(radius: 10)
         .font(.system(size: FontSize.appTitle))
         .foregroundColor(Color(.label))
+        .shadow(radius: 10)
       
       // MARK: Menu Buttons
       MenuButtonsView(showDifficulties: $showDifficulties, showSettings: $showSettings)
