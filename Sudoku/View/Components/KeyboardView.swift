@@ -101,17 +101,17 @@ struct OptionBtnView: View {
   var img: String
   var text: LocalizedStringResource
   
-  private let btnSize: CGFloat = Screen.cellWidth / 2
+  private let fontSize: CGFloat = Screen.cellWidth / 2
   
   var body: some View {
-    VStack {
+    VStack(alignment: .center) {
       Image(systemName: "\(img)")
-        .frame(width: btnSize)
         .foregroundStyle(Colors.Golden)
       Text(text)
         .foregroundStyle(Color(.label))
-        .font(.system(size: btnSize))
+        .font(.system(size: fontSize))
     }
+    .frame(width: (Screen.width - 60) / 4)
   }
 }
 
