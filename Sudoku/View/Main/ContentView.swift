@@ -41,6 +41,7 @@ struct ContentView: View {
           }
         }
       }
+      .navigationBarBackButtonHidden()
       .onAppear {
         showDifficulties = false
       }
