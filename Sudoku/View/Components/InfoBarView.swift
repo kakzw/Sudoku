@@ -10,8 +10,7 @@ import SwiftUI
 struct InfoBarView: View {
   @ObservedObject var sudoku: SudokuModel
   
-  private let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
-  @State private var time = 0
+  @Binding var time: Int
   
   var body: some View {
     HStack {
@@ -29,26 +28,10 @@ struct InfoBarView: View {
       
       // MARK: Timer
       if Settings.shared.useTimer {
-        InfoContentView(title: "info.time", text: "\(formatTime(time))")
-          .onReceive(timer) { _ in
-            time += 1
-          }
+        InfoContentView(title: "info.time",
+                        text: Helper().formatTime(time))
       }
     }
-  }
-  
-  // MARK: - Private Functions
-  
-  /// Format the time into minutes and seconds
-  /// - Parameter time: time in seconds
-  /// - Returns: string of minutes and seconds
-  private func formatTime(_ time: Int) -> String {
-    let min = time / 60
-    let sec = time % 60
-    
-    let secStr = sec < 10 ? "0\(sec)" : "\(sec)"
-    
-    return "\(min):\(secStr)"
   }
 }
 
@@ -65,5 +48,6 @@ struct InfoContentView: View {
 }
 
 #Preview {
-  InfoBarView(sudoku: SudokuModel(difficulty: .medium))
+  InfoBarView(sudoku: SudokuModel(difficulty: .medium),
+              time: .constant(145))
 }

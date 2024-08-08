@@ -36,7 +36,7 @@ struct CellState {
 final class SudokuModel: ObservableObject {
   
   @Published private var grid: [[Cell]]
-  
+  @Published var gameCompleted = false
   private var difficulty: Difficulty
   private var solution: [[Cell]]
   private var activeCell: (row: Int, col: Int)? /// currently selected cell
@@ -62,7 +62,7 @@ final class SudokuModel: ObservableObject {
   ///   - col: column of the cell in the sudoku grid
   ///   - width: width of the cell
   /// - Returns: view of the cell
-  func render(row: Int, col: Int, width: CGFloat) -> some View {
+  func render(row: Int, col: Int, width: CGFloat, fontSize: CGFloat) -> some View {
     let cell = grid[row][col]
     
     /// if no value is inserted in the cell yet, return the note if any
@@ -70,15 +70,15 @@ final class SudokuModel: ObservableObject {
     
     if cell.inputType == .sys {
       return AnyView(Text("\(cell.val)")
-        .font(.system(size: FontSize.cell))
+        .font(.system(size: fontSize))
         .foregroundStyle(Color(.label)))
     } else if cell.inputType == .user {
       return AnyView(Text("\(cell.val)")
-        .font(.system(size: FontSize.cell))
+        .font(.system(size: fontSize))
         .foregroundStyle(Colors.Golden))
     } else {
       return AnyView(Text("\(cell.val)")
-        .font(.system(size: FontSize.cell))
+        .font(.system(size: fontSize))
         .foregroundStyle(Color(.systemPink)))
     }
   }
@@ -143,6 +143,12 @@ final class SudokuModel: ObservableObject {
     
     /// update the cell with new value
     grid[row][col].val = val
+    
+    /// highlight the inserted value in the grid
+    highlightSameVal(val)
+    
+    /// check if the grid is fully filled
+    gameCompleted = isFull()
     return true
   }
   
@@ -324,6 +330,22 @@ final class SudokuModel: ObservableObject {
         }
       }
     )
+  }
+  
+  /// Checks if sudoku grid is completely filled and correct
+  /// - Returns: boolean value indicating whether all cells in the grid have been filled with correct values
+  private func isFull() -> Bool {
+    for row in 0..<9 {
+      for col in 0..<9 {
+        /// if any cell's value does not match solution, return false
+        if grid[row][col].val != solution[row][col].val { return false }
+      }
+    }
+    
+    /// remove highlight from all cells
+    /// before navigating to `GameCompleteView`
+    removeHighlight()
+    return true
   }
   
   /// Change the background color of all cells back to default color

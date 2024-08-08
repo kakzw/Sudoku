@@ -9,12 +9,12 @@ import SwiftUI
 
 struct GridView: View {
   @ObservedObject var sudoku: SudokuModel
-  
-  private let frameSize: CGFloat = Screen.cellWidth * 9
+  var frameSize: CGFloat = Screen.cellWidth * 9
+  var cellFontSize = FontSize.cell
   
   var body: some View {
     ZStack {
-      renderStructure(width: frameSize/9)
+      renderStructure(width: frameSize/9, fontSize: cellFontSize)
       renderOverlayLines(width: frameSize/9)
     }
     .frame(width: frameSize,
@@ -27,7 +27,7 @@ struct GridView: View {
   /// Render the grid structure
   /// - Parameter width: width of each cell
   /// - Returns: view representing sudoku grid
-  private func renderStructure(width: CGFloat) -> some View {
+  private func renderStructure(width: CGFloat, fontSize: CGFloat) -> some View {
     VStack(spacing: -1) {
       /// iterate through each row
       ForEach(0..<9) { row in
@@ -35,7 +35,7 @@ struct GridView: View {
           /// iterate through each column
           ForEach(0..<9) { col in
             /// render each cell
-            sudoku.render(row: row, col: col, width: width)
+            sudoku.render(row: row, col: col, width: width, fontSize: fontSize)
               .frame(width: width, height: width)
               .border(Color.black, width: 1)
               .padding(.all, 0)

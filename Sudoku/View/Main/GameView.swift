@@ -6,17 +6,34 @@
 //
 
 import SwiftUI
+import Combine
 
 struct GameView: View {
   @Environment(\.dismiss) var dismiss
   
-  var sudoku: SudokuModel
+  @ObservedObject var sudoku: SudokuModel
   
+  private let timer = Timer.publish(every: 1, on: .main, in: .common)
+  @State private var timerCancellable: Cancellable? = nil
+  @State private var time = 0
   @State private var showSettings = false
   
   var body: some View {
     VStack {
-      InfoBarView(sudoku: sudoku)
+      InfoBarView(sudoku: sudoku, time: $time)
+        .onReceive(timer) { _ in
+          if sudoku.gameCompleted {
+            timerCancellable?.cancel()
+          } else {
+            time += 1
+          }
+        }
+        .onAppear {
+          timerCancellable = timer.connect()
+        }
+        .onDisappear {
+          timerCancellable?.cancel()
+        }
       GridView(sudoku: sudoku)
       KeyboardView(sudoku: sudoku)
     }
@@ -26,6 +43,12 @@ struct GameView: View {
     .navigationBarBackButtonHidden()
     .navigationDestination(isPresented: $showSettings) {
       SettingsView()
+    }
+    .navigationDestination(isPresented: $sudoku.gameCompleted) {
+      GameCompleteView(
+        sudoku: sudoku,
+        time: Helper().formatTime(time)
+      )
     }
     .toolbar {
       // MARK: Back Button

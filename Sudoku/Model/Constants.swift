@@ -40,6 +40,8 @@ enum Colors {
   static let DeepBlue: Color = Color(UIColor(named: "DeepBlue")!)
   static let ActiveBlue: Color = Color(UIColor(named: "ActiveBlue")!)
   static let LightBlue: Color = Color(UIColor(named: "LightBlue")!)
+  static let Cyan: Color = Color(UIColor(named: "Cyan")!)
+  static let LightCyan: Color = Color(UIColor(named: "LightCyan")!)
   static let MatteBlack: Color = Color(UIColor(named: "MatteBlack")!)
   static let Golden: Color = Color(UIColor(named: "Golden")!)
 }
