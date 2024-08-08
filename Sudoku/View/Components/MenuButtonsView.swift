@@ -39,8 +39,13 @@ struct MenuButtonView: View {
     } label: {
       HStack {
         Image(systemName: img)
-        Text(title)
+        HStack {
+          Spacer()
+          Text(title)
+          Spacer()
+        }
       }
+      .padding(.horizontal)
       .frame(width: Screen.width*0.6, height: 50)
       .font(.system(size: FontSize.text))
       .fontWeight(.semibold)
