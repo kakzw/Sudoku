@@ -30,11 +30,11 @@ final class Solutions {
   
   init() {
     self.easySudoku = [easy1]
-    self.mediumSudoku = [medium1]
-    self.hardSudoku = []
-    self.expertSudoku = []
-    self.masterSudoku = []
-    self.extremeSudoku = []
+    self.mediumSudoku = [medium1, medium2]
+    self.hardSudoku = [hard1]
+    self.expertSudoku = [expert1]
+    self.masterSudoku = [master1]
+    self.extremeSudoku = [extreme1]
   }
   
   // MARK: - Public Functions
@@ -79,9 +79,21 @@ final class Solutions {
     [Cell(val: 6, inputType: .user), Cell(val: 4, inputType: .sys), Cell(val: 7, inputType: .user), Cell(val: 2, inputType: .sys), Cell(val: 1, inputType: .sys), Cell(val: 9, inputType: .sys), Cell(val: 8, inputType: .sys), Cell(val: 3, inputType: .sys), Cell(val: 5, inputType: .user)]
   ]
   
+  private let easy2: [[Cell]] = [
+    [Cell(val: 6, inputType: .user), Cell(val: 2, inputType: .user), Cell(val: 7, inputType: .sys), Cell(val: 5, inputType: .sys), Cell(val: 3, inputType: .sys), Cell(val: 1, inputType: .user), Cell(val: 4, inputType: .user), Cell(val: 9, inputType: .user), Cell(val: 8, inputType: .user)],
+    [Cell(val: 8, inputType: .user), Cell(val: 1, inputType: .sys), Cell(val: 3, inputType: .user), Cell(val: 6, inputType: .user), Cell(val: 4, inputType: .sys), Cell(val: 9, inputType: .user), Cell(val: 7, inputType: .sys), Cell(val: 2, inputType: .sys), Cell(val: 5, inputType: .sys)],
+    [Cell(val: 5, inputType: .user), Cell(val: 9, inputType: .user), Cell(val: 4, inputType: .user), Cell(val: 8, inputType: .sys), Cell(val: 2, inputType: .sys), Cell(val: 7, inputType: .sys), Cell(val: 3, inputType: .user), Cell(val: 6, inputType: .sys), Cell(val: 1, inputType: .user)],
+    [Cell(val: 4, inputType: .sys), Cell(val: 5, inputType: .sys), Cell(val: 1, inputType: .sys), Cell(val: 9, inputType: .sys), Cell(val: 6, inputType: .sys), Cell(val: 2, inputType: .user), Cell(val: 8, inputType: .sys), Cell(val: 3, inputType: .user), Cell(val: 7, inputType: .user)],
+    [Cell(val: 7, inputType: .user), Cell(val: 3, inputType: .sys), Cell(val: 6, inputType: .sys), Cell(val: 1, inputType: .user), Cell(val: 8, inputType: .user), Cell(val: 5, inputType: .user), Cell(val: 9, inputType: .user), Cell(val: 4, inputType: .sys), Cell(val: 2, inputType: .user)],
+    [Cell(val: 9, inputType: .user), Cell(val: 8, inputType: .user), Cell(val: 2, inputType: .user), Cell(val: 3, inputType: .user), Cell(val: 7, inputType: .sys), Cell(val: 4, inputType: .sys), Cell(val: 1, inputType: .user), Cell(val: 5, inputType: .user), Cell(val: 6, inputType: .user)],
+    [Cell(val: 1, inputType: .user), Cell(val: 7, inputType: .sys), Cell(val: 5, inputType: .sys), Cell(val: 4, inputType: .user), Cell(val: 9, inputType: .user), Cell(val: 6, inputType: .sys), Cell(val: 2, inputType: .user), Cell(val: 8, inputType: .user), Cell(val: 3, inputType: .sys)],
+    [Cell(val: 3, inputType: .sys), Cell(val: 6, inputType: .user), Cell(val: 9, inputType: .sys), Cell(val: 2, inputType: .sys), Cell(val: 1, inputType: .user), Cell(val: 8, inputType: .sys), Cell(val: 5, inputType: .sys), Cell(val: 7, inputType: .user), Cell(val: 4, inputType: .user)],
+    [Cell(val: 2, inputType: .sys), Cell(val: 4, inputType: .sys), Cell(val: 8, inputType: .sys), Cell(val: 7, inputType: .user), Cell(val: 5, inputType: .sys), Cell(val: 3, inputType: .sys), Cell(val: 6, inputType: .user), Cell(val: 1, inputType: .sys), Cell(val: 9, inputType: .user)]
+  ]
+  
   // MARK: - List of medium sudoku
   
-  private let medium1: [[Cell]] =  [
+  private let medium1: [[Cell]] = [
     [Cell(val: 2, inputType: .sys), Cell(val: 1, inputType: .user), Cell(val: 8, inputType: .user), Cell(val: 4, inputType: .user), Cell(val: 7, inputType: .sys), Cell(val: 5, inputType: .user), Cell(val: 3, inputType: .sys), Cell(val: 9, inputType: .user), Cell(val: 6, inputType: .user)],
     [Cell(val: 7, inputType: .sys), Cell(val: 5, inputType: .user), Cell(val: 3, inputType: .sys), Cell(val: 9, inputType: .sys), Cell(val: 1, inputType: .sys), Cell(val: 6, inputType: .sys), Cell(val: 2, inputType: .user), Cell(val: 8, inputType: .user), Cell(val: 4, inputType: .user)],
     [Cell(val: 4, inputType: .user), Cell(val: 9, inputType: .user), Cell(val: 6, inputType: .sys), Cell(val: 3, inputType: .user), Cell(val: 8, inputType: .sys), Cell(val: 2, inputType: .user), Cell(val: 1, inputType: .sys), Cell(val: 5, inputType: .sys), Cell(val: 7, inputType: .user)],
@@ -91,6 +103,124 @@ final class Solutions {
     [Cell(val: 9, inputType: .user), Cell(val: 6, inputType: .sys), Cell(val: 2, inputType: .sys), Cell(val: 7, inputType: .user), Cell(val: 3, inputType: .user), Cell(val: 8, inputType: .user), Cell(val: 4, inputType: .sys), Cell(val: 1, inputType: .user), Cell(val: 5, inputType: .sys)],
     [Cell(val: 3, inputType: .user), Cell(val: 7, inputType: .sys), Cell(val: 4, inputType: .user), Cell(val: 6, inputType: .user), Cell(val: 5, inputType: .sys), Cell(val: 1, inputType: .user), Cell(val: 9, inputType: .user), Cell(val: 2, inputType: .sys), Cell(val: 8, inputType: .sys)],
     [Cell(val: 1, inputType: .user), Cell(val: 8, inputType: .sys), Cell(val: 5, inputType: .user), Cell(val: 2, inputType: .user), Cell(val: 4, inputType: .user), Cell(val: 9, inputType: .sys), Cell(val: 7, inputType: .sys), Cell(val: 6, inputType: .sys), Cell(val: 3, inputType: .user)]
+  ]
+  
+  private let medium2: [[Cell]] = [
+    [Cell(val: 6, inputType: .user), Cell(val: 8, inputType: .user), Cell(val: 5, inputType: .sys), Cell(val: 7, inputType: .sys), Cell(val: 4, inputType: .user), Cell(val: 9, inputType: .sys), Cell(val: 1, inputType: .user), Cell(val: 3, inputType: .sys), Cell(val: 2, inputType: .user)],
+    [Cell(val: 7, inputType: .sys), Cell(val: 3, inputType: .sys), Cell(val: 4, inputType: .sys), Cell(val: 6, inputType: .sys), Cell(val: 1, inputType: .user), Cell(val: 2, inputType: .sys), Cell(val: 5, inputType: .sys), Cell(val: 9, inputType: .user), Cell(val: 8, inputType: .sys)],
+    [Cell(val: 2, inputType: .sys), Cell(val: 1, inputType: .user), Cell(val: 9, inputType: .user), Cell(val: 3, inputType: .sys), Cell(val: 5, inputType: .user), Cell(val: 8, inputType: .sys), Cell(val: 7, inputType: .sys), Cell(val: 6, inputType: .sys), Cell(val: 4, inputType: .user)],
+    [Cell(val: 5, inputType: .sys), Cell(val: 6, inputType: .user), Cell(val: 8, inputType: .user), Cell(val: 1, inputType: .user), Cell(val: 9, inputType: .sys), Cell(val: 3, inputType: .sys), Cell(val: 4, inputType: .sys), Cell(val: 2, inputType: .user), Cell(val: 7, inputType: .user)],
+    [Cell(val: 1, inputType: .sys), Cell(val: 9, inputType: .user), Cell(val: 7, inputType: .sys), Cell(val: 5, inputType: .user), Cell(val: 2, inputType: .user), Cell(val: 4, inputType: .user), Cell(val: 6, inputType: .user), Cell(val: 8, inputType: .user), Cell(val: 3, inputType: .sys)],
+    [Cell(val: 3, inputType: .user), Cell(val: 4, inputType: .user), Cell(val: 2, inputType: .user), Cell(val: 8, inputType: .sys), Cell(val: 6, inputType: .sys), Cell(val: 7, inputType: .user), Cell(val: 9, inputType: .sys), Cell(val: 1, inputType: .user), Cell(val: 5, inputType: .sys)],
+    [Cell(val: 9, inputType: .sys), Cell(val: 2, inputType: .sys), Cell(val: 6, inputType: .user), Cell(val: 4, inputType: .user), Cell(val: 3, inputType: .user), Cell(val: 5, inputType: .sys), Cell(val: 8, inputType: .user), Cell(val: 7, inputType: .user), Cell(val: 1, inputType: .sys)],
+    [Cell(val: 8, inputType: .user), Cell(val: 5, inputType: .user), Cell(val: 1, inputType: .sys), Cell(val: 2, inputType: .sys), Cell(val: 7, inputType: .sys), Cell(val: 6, inputType: .user), Cell(val: 3, inputType: .sys), Cell(val: 4, inputType: .user), Cell(val: 9, inputType: .user)],
+    [Cell(val: 4, inputType: .user), Cell(val: 7, inputType: .user), Cell(val: 3, inputType: .user), Cell(val: 9, inputType: .sys), Cell(val: 8, inputType: .sys), Cell(val: 1, inputType: .user), Cell(val: 2, inputType: .user), Cell(val: 5, inputType: .sys), Cell(val: 6, inputType: .user)]
+  ]
+  
+  // MARK: - List of hard sudoku
+  
+  private let hard1: [[Cell]] = [
+    [Cell(val: 2, inputType: .sys), Cell(val: 5, inputType: .user), Cell(val: 6, inputType: .user), Cell(val: 4, inputType: .sys), Cell(val: 7, inputType: .user), Cell(val: 3, inputType: .sys), Cell(val: 8, inputType: .user), Cell(val: 9, inputType: .user), Cell(val: 1, inputType: .sys)],
+    [Cell(val: 8, inputType: .sys), Cell(val: 7, inputType: .user), Cell(val: 1, inputType: .user), Cell(val: 9, inputType: .user), Cell(val: 2, inputType: .user), Cell(val: 6, inputType: .sys), Cell(val: 3, inputType: .user), Cell(val: 4, inputType: .sys), Cell(val: 5, inputType: .user)],
+    [Cell(val: 3, inputType: .user), Cell(val: 4, inputType: .user), Cell(val: 9, inputType: .sys), Cell(val: 8, inputType: .user), Cell(val: 5, inputType: .sys), Cell(val: 1, inputType: .user), Cell(val: 7, inputType: .sys), Cell(val: 2, inputType: .user), Cell(val: 6, inputType: .user)],
+    [Cell(val: 1, inputType: .sys), Cell(val: 3, inputType: .sys), Cell(val: 2, inputType: .user), Cell(val: 6, inputType: .user), Cell(val: 8, inputType: .sys), Cell(val: 5, inputType: .user), Cell(val: 4, inputType: .sys), Cell(val: 7, inputType: .user), Cell(val: 9, inputType: .user)],
+    [Cell(val: 5, inputType: .user), Cell(val: 9, inputType: .user), Cell(val: 8, inputType: .user), Cell(val: 7, inputType: .user), Cell(val: 3, inputType: .user), Cell(val: 4, inputType: .sys), Cell(val: 1, inputType: .user), Cell(val: 6, inputType: .sys), Cell(val: 2, inputType: .sys)],
+    [Cell(val: 7, inputType: .sys), Cell(val: 6, inputType: .user), Cell(val: 4, inputType: .sys), Cell(val: 2, inputType: .sys), Cell(val: 1, inputType: .sys), Cell(val: 9, inputType: .user), Cell(val: 5, inputType: .sys), Cell(val: 3, inputType: .sys), Cell(val: 8, inputType: .sys)],
+    [Cell(val: 4, inputType: .user), Cell(val: 2, inputType: .sys), Cell(val: 7, inputType: .user), Cell(val: 5, inputType: .sys), Cell(val: 6, inputType: .user), Cell(val: 8, inputType: .sys), Cell(val: 9, inputType: .user), Cell(val: 1, inputType: .user), Cell(val: 3, inputType: .user)],
+    [Cell(val: 9, inputType: .user), Cell(val: 1, inputType: .user), Cell(val: 5, inputType: .user), Cell(val: 3, inputType: .sys), Cell(val: 4, inputType: .sys), Cell(val: 2, inputType: .user), Cell(val: 6, inputType: .user), Cell(val: 8, inputType: .user), Cell(val: 7, inputType: .user)],
+    [Cell(val: 6, inputType: .user), Cell(val: 8, inputType: .user), Cell(val: 3, inputType: .user), Cell(val: 1, inputType: .user), Cell(val: 9, inputType: .sys), Cell(val: 7, inputType: .user), Cell(val: 2, inputType: .user), Cell(val: 5, inputType: .user), Cell(val: 4, inputType: .user)]
+  ]
+  
+  private let hard2: [[Cell]] = [
+    [Cell(val: 9, inputType: .user), Cell(val: 6, inputType: .sys), Cell(val: 2, inputType: .sys), Cell(val: 3, inputType: .user), Cell(val: 7, inputType: .user), Cell(val: 8, inputType: .user), Cell(val: 4, inputType: .user), Cell(val: 1, inputType: .user), Cell(val: 5, inputType: .sys)],
+    [Cell(val: 3, inputType: .sys), Cell(val: 7, inputType: .sys), Cell(val: 4, inputType: .sys), Cell(val: 5, inputType: .sys), Cell(val: 6, inputType: .user), Cell(val: 1, inputType: .sys), Cell(val: 9, inputType: .user), Cell(val: 2, inputType: .user), Cell(val: 8, inputType: .user)],
+    [Cell(val: 1, inputType: .user), Cell(val: 8, inputType: .user), Cell(val: 5, inputType: .user), Cell(val: 4, inputType: .sys), Cell(val: 2, inputType: .user), Cell(val: 9, inputType: .user), Cell(val: 7, inputType: .user), Cell(val: 6, inputType: .sys), Cell(val: 3, inputType: .sys)],
+    [Cell(val: 5, inputType: .user), Cell(val: 3, inputType: .user), Cell(val: 1, inputType: .sys), Cell(val: 9, inputType: .user), Cell(val: 8, inputType: .user), Cell(val: 4, inputType: .user), Cell(val: 6, inputType: .user), Cell(val: 7, inputType: .user), Cell(val: 2, inputType: .user)],
+    [Cell(val: 8, inputType: .user), Cell(val: 2, inputType: .sys), Cell(val: 7, inputType: .sys), Cell(val: 6, inputType: .user), Cell(val: 1, inputType: .user), Cell(val: 3, inputType: .user), Cell(val: 5, inputType: .sys), Cell(val: 4, inputType: .sys), Cell(val: 9, inputType: .user)],
+    [Cell(val: 6, inputType: .sys), Cell(val: 4, inputType: .user), Cell(val: 9, inputType: .user), Cell(val: 2, inputType: .sys), Cell(val: 5, inputType: .sys), Cell(val: 7, inputType: .sys), Cell(val: 8, inputType: .user), Cell(val: 3, inputType: .user), Cell(val: 1, inputType: .user)],
+    [Cell(val: 4, inputType: .sys), Cell(val: 9, inputType: .sys), Cell(val: 6, inputType: .sys), Cell(val: 8, inputType: .sys), Cell(val: 3, inputType: .sys), Cell(val: 2, inputType: .user), Cell(val: 1, inputType: .user), Cell(val: 5, inputType: .user), Cell(val: 7, inputType: .user)],
+    [Cell(val: 2, inputType: .sys), Cell(val: 1, inputType: .user), Cell(val: 8, inputType: .sys), Cell(val: 7, inputType: .user), Cell(val: 4, inputType: .user), Cell(val: 5, inputType: .user), Cell(val: 3, inputType: .user), Cell(val: 9, inputType: .sys), Cell(val: 6, inputType: .user)],
+    [Cell(val: 7, inputType: .user), Cell(val: 5, inputType: .sys), Cell(val: 3, inputType: .user), Cell(val: 1, inputType: .user), Cell(val: 9, inputType: .user), Cell(val: 6, inputType: .user), Cell(val: 2, inputType: .user), Cell(val: 8, inputType: .sys), Cell(val: 4, inputType: .sys)]
+  ]
+  
+  // MARK: - List of expert sudoku
+  
+  private let expert1: [[Cell]] = [
+    [Cell(val: 4, inputType: .sys), Cell(val: 1, inputType: .user), Cell(val: 5, inputType: .user), Cell(val: 2, inputType: .sys), Cell(val: 6, inputType: .user), Cell(val: 9, inputType: .sys), Cell(val: 8, inputType: .user), Cell(val: 7, inputType: .user), Cell(val: 3, inputType: .user)],
+    [Cell(val: 7, inputType: .user), Cell(val: 6, inputType: .user), Cell(val: 3, inputType: .user), Cell(val: 5, inputType: .user), Cell(val: 8, inputType: .user), Cell(val: 1, inputType: .user), Cell(val: 9, inputType: .sys), Cell(val: 2, inputType: .user), Cell(val: 4, inputType: .sys)],
+    [Cell(val: 9, inputType: .user), Cell(val: 2, inputType: .user), Cell(val: 8, inputType: .user), Cell(val: 4, inputType: .user), Cell(val: 7, inputType: .sys), Cell(val: 3, inputType: .user), Cell(val: 1, inputType: .sys), Cell(val: 6, inputType: .sys), Cell(val: 5, inputType: .user)],
+    [Cell(val: 3, inputType: .sys), Cell(val: 9, inputType: .user), Cell(val: 6, inputType: .user), Cell(val: 8, inputType: .user), Cell(val: 1, inputType: .user), Cell(val: 2, inputType: .user), Cell(val: 5, inputType: .user), Cell(val: 4, inputType: .user), Cell(val: 7, inputType: .sys)],
+    [Cell(val: 1, inputType: .sys), Cell(val: 5, inputType: .user), Cell(val: 7, inputType: .user), Cell(val: 6, inputType: .sys), Cell(val: 9, inputType: .user), Cell(val: 4, inputType: .sys), Cell(val: 2, inputType: .user), Cell(val: 3, inputType: .user), Cell(val: 8, inputType: .sys)],
+    [Cell(val: 2, inputType: .user), Cell(val: 8, inputType: .user), Cell(val: 4, inputType: .user), Cell(val: 3, inputType: .sys), Cell(val: 5, inputType: .user), Cell(val: 7, inputType: .user), Cell(val: 6, inputType: .sys), Cell(val: 9, inputType: .user), Cell(val: 1, inputType: .user)],
+    [Cell(val: 6, inputType: .sys), Cell(val: 7, inputType: .sys), Cell(val: 2, inputType: .user), Cell(val: 1, inputType: .sys), Cell(val: 3, inputType: .sys), Cell(val: 5, inputType: .user), Cell(val: 4, inputType: .user), Cell(val: 8, inputType: .user), Cell(val: 9, inputType: .sys)],
+    [Cell(val: 8, inputType: .sys), Cell(val: 3, inputType: .sys), Cell(val: 1, inputType: .sys), Cell(val: 9, inputType: .user), Cell(val: 4, inputType: .user), Cell(val: 6, inputType: .sys), Cell(val: 7, inputType: .user), Cell(val: 5, inputType: .sys), Cell(val: 2, inputType: .sys)],
+    [Cell(val: 5, inputType: .user), Cell(val: 4, inputType: .user), Cell(val: 9, inputType: .sys), Cell(val: 7, inputType: .user), Cell(val: 2, inputType: .sys), Cell(val: 8, inputType: .sys), Cell(val: 3, inputType: .user), Cell(val: 1, inputType: .user), Cell(val: 6, inputType: .sys)]
+  ]
+  
+  private let expert2: [[Cell]] = [
+    [Cell(val: 5, inputType: .user), Cell(val: 3, inputType: .sys), Cell(val: 4, inputType: .sys), Cell(val: 6, inputType: .sys), Cell(val: 7, inputType: .sys), Cell(val: 8, inputType: .user), Cell(val: 2, inputType: .user), Cell(val: 1, inputType: .user), Cell(val: 9, inputType: .user)],
+    [Cell(val: 6, inputType: .sys), Cell(val: 7, inputType: .user), Cell(val: 1, inputType: .sys), Cell(val: 9, inputType: .user), Cell(val: 2, inputType: .user), Cell(val: 5, inputType: .user), Cell(val: 8, inputType: .user), Cell(val: 4, inputType: .sys), Cell(val: 3, inputType: .user)],
+    [Cell(val: 8, inputType: .user), Cell(val: 2, inputType: .user), Cell(val: 9, inputType: .user), Cell(val: 3, inputType: .sys), Cell(val: 1, inputType: .user), Cell(val: 4, inputType: .sys), Cell(val: 7, inputType: .user), Cell(val: 6, inputType: .sys), Cell(val: 5, inputType: .sys)],
+    [Cell(val: 7, inputType: .user), Cell(val: 9, inputType: .user), Cell(val: 8, inputType: .sys), Cell(val: 4, inputType: .sys), Cell(val: 5, inputType: .sys), Cell(val: 6, inputType: .user), Cell(val: 3, inputType: .user), Cell(val: 2, inputType: .user), Cell(val: 1, inputType: .sys)],
+    [Cell(val: 4, inputType: .sys), Cell(val: 6, inputType: .sys), Cell(val: 3, inputType: .user), Cell(val: 1, inputType: .user), Cell(val: 8, inputType: .sys), Cell(val: 2, inputType: .sys), Cell(val: 5, inputType: .user), Cell(val: 9, inputType: .sys), Cell(val: 7, inputType: .user)],
+    [Cell(val: 1, inputType: .user), Cell(val: 5, inputType: .user), Cell(val: 2, inputType: .user), Cell(val: 7, inputType: .sys), Cell(val: 3, inputType: .user), Cell(val: 9, inputType: .user), Cell(val: 4, inputType: .user), Cell(val: 8, inputType: .sys), Cell(val: 6, inputType: .user)],
+    [Cell(val: 9, inputType: .user), Cell(val: 8, inputType: .sys), Cell(val: 7, inputType: .user), Cell(val: 2, inputType: .user), Cell(val: 6, inputType: .user), Cell(val: 3, inputType: .user), Cell(val: 1, inputType: .user), Cell(val: 5, inputType: .user), Cell(val: 4, inputType: .user)],
+    [Cell(val: 2, inputType: .user), Cell(val: 1, inputType: .sys), Cell(val: 6, inputType: .user), Cell(val: 5, inputType: .user), Cell(val: 4, inputType: .user), Cell(val: 7, inputType: .user), Cell(val: 9, inputType: .sys), Cell(val: 3, inputType: .user), Cell(val: 8, inputType: .sys)],
+    [Cell(val: 3, inputType: .sys), Cell(val: 4, inputType: .sys), Cell(val: 5, inputType: .sys), Cell(val: 8, inputType: .sys), Cell(val: 9, inputType: .sys), Cell(val: 1, inputType: .sys), Cell(val: 6, inputType: .user), Cell(val: 7, inputType: .user), Cell(val: 2, inputType: .user)]
+  ]
+  
+  private let expert3: [[Cell]] = [
+    [Cell(val: 5, inputType: .user), Cell(val: 3, inputType: .sys), Cell(val: 4, inputType: .sys), Cell(val: 6, inputType: .sys), Cell(val: 7, inputType: .sys), Cell(val: 8, inputType: .user), Cell(val: 2, inputType: .user), Cell(val: 1, inputType: .user), Cell(val: 9, inputType: .user)],
+    [Cell(val: 6, inputType: .sys), Cell(val: 7, inputType: .user), Cell(val: 1, inputType: .sys), Cell(val: 9, inputType: .user), Cell(val: 2, inputType: .user), Cell(val: 5, inputType: .user), Cell(val: 8, inputType: .user), Cell(val: 4, inputType: .sys), Cell(val: 3, inputType: .user)],
+    [Cell(val: 8, inputType: .user), Cell(val: 2, inputType: .user), Cell(val: 9, inputType: .user), Cell(val: 3, inputType: .sys), Cell(val: 1, inputType: .user), Cell(val: 4, inputType: .sys), Cell(val: 7, inputType: .user), Cell(val: 6, inputType: .sys), Cell(val: 5, inputType: .sys)],
+    [Cell(val: 7, inputType: .user), Cell(val: 9, inputType: .user), Cell(val: 8, inputType: .sys), Cell(val: 4, inputType: .sys), Cell(val: 5, inputType: .sys), Cell(val: 6, inputType: .user), Cell(val: 3, inputType: .user), Cell(val: 2, inputType: .user), Cell(val: 1, inputType: .sys)],
+    [Cell(val: 4, inputType: .sys), Cell(val: 6, inputType: .sys), Cell(val: 3, inputType: .user), Cell(val: 1, inputType: .user), Cell(val: 8, inputType: .sys), Cell(val: 2, inputType: .sys), Cell(val: 5, inputType: .user), Cell(val: 9, inputType: .sys), Cell(val: 7, inputType: .user)],
+    [Cell(val: 1, inputType: .user), Cell(val: 5, inputType: .user), Cell(val: 2, inputType: .user), Cell(val: 7, inputType: .sys), Cell(val: 3, inputType: .user), Cell(val: 9, inputType: .user), Cell(val: 4, inputType: .user), Cell(val: 8, inputType: .sys), Cell(val: 6, inputType: .user)],
+    [Cell(val: 9, inputType: .user), Cell(val: 8, inputType: .sys), Cell(val: 7, inputType: .user), Cell(val: 2, inputType: .user), Cell(val: 6, inputType: .user), Cell(val: 3, inputType: .user), Cell(val: 1, inputType: .user), Cell(val: 5, inputType: .user), Cell(val: 4, inputType: .user)],
+    [Cell(val: 2, inputType: .user), Cell(val: 1, inputType: .sys), Cell(val: 6, inputType: .user), Cell(val: 5, inputType: .user), Cell(val: 4, inputType: .user), Cell(val: 7, inputType: .user), Cell(val: 9, inputType: .sys), Cell(val: 3, inputType: .user), Cell(val: 8, inputType: .sys)],
+    [Cell(val: 3, inputType: .sys), Cell(val: 4, inputType: .sys), Cell(val: 5, inputType: .sys), Cell(val: 8, inputType: .sys), Cell(val: 9, inputType: .sys), Cell(val: 1, inputType: .sys), Cell(val: 6, inputType: .user), Cell(val: 7, inputType: .user), Cell(val: 2, inputType: .user)]
+  ]
+  
+  // MARK: - List of master sudoku
+  
+  private let master1: [[Cell]] = [
+    [Cell(val: 1, inputType: .user), Cell(val: 3, inputType: .user), Cell(val: 2, inputType: .user), Cell(val: 4, inputType: .sys), Cell(val: 7, inputType: .sys), Cell(val: 9, inputType: .user), Cell(val: 6, inputType: .user), Cell(val: 8, inputType: .user), Cell(val: 5, inputType: .user)],
+    [Cell(val: 5, inputType: .sys), Cell(val: 9, inputType: .user), Cell(val: 8, inputType: .user), Cell(val: 1, inputType: .user), Cell(val: 6, inputType: .sys), Cell(val: 2, inputType: .user), Cell(val: 7, inputType: .sys), Cell(val: 3, inputType: .sys), Cell(val: 4, inputType: .user)],
+    [Cell(val: 7, inputType: .user), Cell(val: 6, inputType: .user), Cell(val: 4, inputType: .user), Cell(val: 5, inputType: .user), Cell(val: 3, inputType: .user), Cell(val: 8, inputType: .user), Cell(val: 2, inputType: .sys), Cell(val: 1, inputType: .sys), Cell(val: 9, inputType: .sys)],
+    [Cell(val: 8, inputType: .user), Cell(val: 7, inputType: .user), Cell(val: 1, inputType: .user), Cell(val: 3, inputType: .user), Cell(val: 4, inputType: .user), Cell(val: 5, inputType: .sys), Cell(val: 9, inputType: .sys), Cell(val: 2, inputType: .user), Cell(val: 6, inputType: .user)],
+    [Cell(val: 3, inputType: .user), Cell(val: 4, inputType: .user), Cell(val: 9, inputType: .user), Cell(val: 7, inputType: .user), Cell(val: 2, inputType: .sys), Cell(val: 6, inputType: .sys), Cell(val: 8, inputType: .user), Cell(val: 5, inputType: .user), Cell(val: 1, inputType: .sys)],
+    [Cell(val: 2, inputType: .user), Cell(val: 5, inputType: .user), Cell(val: 6, inputType: .sys), Cell(val: 8, inputType: .user), Cell(val: 9, inputType: .sys), Cell(val: 1, inputType: .sys), Cell(val: 4, inputType: .user), Cell(val: 7, inputType: .sys), Cell(val: 3, inputType: .user)],
+    [Cell(val: 4, inputType: .sys), Cell(val: 2, inputType: .user), Cell(val: 7, inputType: .sys), Cell(val: 9, inputType: .user), Cell(val: 1, inputType: .user), Cell(val: 3, inputType: .user), Cell(val: 5, inputType: .sys), Cell(val: 6, inputType: .user), Cell(val: 8, inputType: .sys)],
+    [Cell(val: 9, inputType: .user), Cell(val: 1, inputType: .user), Cell(val: 5, inputType: .user), Cell(val: 6, inputType: .user), Cell(val: 8, inputType: .user), Cell(val: 7, inputType: .user), Cell(val: 3, inputType: .user), Cell(val: 4, inputType: .user), Cell(val: 2, inputType: .sys)],
+    [Cell(val: 6, inputType: .sys), Cell(val: 8, inputType: .sys), Cell(val: 3, inputType: .user), Cell(val: 2, inputType: .user), Cell(val: 5, inputType: .user), Cell(val: 4, inputType: .user), Cell(val: 1, inputType: .user), Cell(val: 9, inputType: .user), Cell(val: 7, inputType: .user)]
+  ]
+  
+  // MARK: - List of extreme sudoku
+  
+  private let extreme1: [[Cell]] = [
+    [Cell(val: 4, inputType: .user), Cell(val: 1, inputType: .user), Cell(val: 5, inputType: .user), Cell(val: 8, inputType: .user), Cell(val: 7, inputType: .user), Cell(val: 3, inputType: .user), Cell(val: 6, inputType: .sys), Cell(val: 9, inputType: .sys), Cell(val: 2, inputType: .user)],
+    [Cell(val: 9, inputType: .user), Cell(val: 2, inputType: .sys), Cell(val: 8, inputType: .sys), Cell(val: 1, inputType: .sys), Cell(val: 6, inputType: .user), Cell(val: 5, inputType: .user), Cell(val: 7, inputType: .user), Cell(val: 3, inputType: .user), Cell(val: 4, inputType: .user)],
+    [Cell(val: 7, inputType: .user), Cell(val: 6, inputType: .user), Cell(val: 3, inputType: .user), Cell(val: 9, inputType: .user), Cell(val: 2, inputType: .user), Cell(val: 4, inputType: .user), Cell(val: 8, inputType: .user), Cell(val: 1, inputType: .user), Cell(val: 5, inputType: .sys)],
+    [Cell(val: 6, inputType: .sys), Cell(val: 7, inputType: .user), Cell(val: 2, inputType: .sys), Cell(val: 4, inputType: .sys), Cell(val: 8, inputType: .user), Cell(val: 9, inputType: .user), Cell(val: 3, inputType: .sys), Cell(val: 5, inputType: .user), Cell(val: 1, inputType: .sys)],
+    [Cell(val: 8, inputType: .user), Cell(val: 3, inputType: .sys), Cell(val: 1, inputType: .user), Cell(val: 7, inputType: .user), Cell(val: 5, inputType: .sys), Cell(val: 2, inputType: .user), Cell(val: 4, inputType: .user), Cell(val: 6, inputType: .user), Cell(val: 9, inputType: .user)],
+    [Cell(val: 5, inputType: .user), Cell(val: 4, inputType: .user), Cell(val: 9, inputType: .sys), Cell(val: 3, inputType: .user), Cell(val: 1, inputType: .user), Cell(val: 6, inputType: .user), Cell(val: 2, inputType: .user), Cell(val: 8, inputType: .sys), Cell(val: 7, inputType: .user)],
+    [Cell(val: 1, inputType: .sys), Cell(val: 5, inputType: .user), Cell(val: 7, inputType: .user), Cell(val: 2, inputType: .user), Cell(val: 3, inputType: .sys), Cell(val: 8, inputType: .user), Cell(val: 9, inputType: .user), Cell(val: 4, inputType: .sys), Cell(val: 6, inputType: .user)],
+    [Cell(val: 3, inputType: .sys), Cell(val: 9, inputType: .sys), Cell(val: 6, inputType: .sys), Cell(val: 5, inputType: .sys), Cell(val: 4, inputType: .user), Cell(val: 7, inputType: .sys), Cell(val: 1, inputType: .user), Cell(val: 2, inputType: .user), Cell(val: 8, inputType: .user)],
+    [Cell(val: 2, inputType: .user), Cell(val: 8, inputType: .sys), Cell(val: 4, inputType: .user), Cell(val: 6, inputType: .user), Cell(val: 9, inputType: .user), Cell(val: 1, inputType: .user), Cell(val: 5, inputType: .user), Cell(val: 7, inputType: .user), Cell(val: 3, inputType: .user)]
+  ]
+  
+  // MARK: - Test sudoku
+  
+  private let test1: [[Cell]] = [
+    [Cell(val: 1, inputType: .sys), Cell(val: 5, inputType: .sys), Cell(val: 9, inputType: .sys), Cell(val: 3, inputType: .sys), Cell(val: 4, inputType: .sys), Cell(val: 2, inputType: .sys), Cell(val: 7, inputType: .sys), Cell(val: 8, inputType: .sys), Cell(val: 6, inputType: .sys)],
+    [Cell(val: 2, inputType: .sys), Cell(val: 7, inputType: .sys), Cell(val: 4, inputType: .sys), Cell(val: 5, inputType: .sys), Cell(val: 6, inputType: .sys), Cell(val: 8, inputType: .sys), Cell(val: 3, inputType: .sys), Cell(val: 1, inputType: .sys), Cell(val: 9, inputType: .sys)],
+    [Cell(val: 8, inputType: .sys), Cell(val: 3, inputType: .sys), Cell(val: 6, inputType: .sys), Cell(val: 1, inputType: .sys), Cell(val: 9, inputType: .sys), Cell(val: 7, inputType: .sys), Cell(val: 4, inputType: .sys), Cell(val: 5, inputType: .sys), Cell(val: 2, inputType: .sys)],
+    [Cell(val: 7, inputType: .sys), Cell(val: 1, inputType: .sys), Cell(val: 8, inputType: .sys), Cell(val: 9, inputType: .sys), Cell(val: 2, inputType: .sys), Cell(val: 6, inputType: .sys), Cell(val: 5, inputType: .sys), Cell(val: 4, inputType: .sys), Cell(val: 3, inputType: .sys)],
+    [Cell(val: 4, inputType: .sys), Cell(val: 9, inputType: .sys), Cell(val: 3, inputType: .sys), Cell(val: 8, inputType: .sys), Cell(val: 5, inputType: .sys), Cell(val: 1, inputType: .sys), Cell(val: 6, inputType: .sys), Cell(val: 2, inputType: .sys), Cell(val: 7, inputType: .sys)],
+    [Cell(val: 5, inputType: .sys), Cell(val: 6, inputType: .sys), Cell(val: 2, inputType: .sys), Cell(val: 4, inputType: .sys), Cell(val: 7, inputType: .sys), Cell(val: 3, inputType: .sys), Cell(val: 1, inputType: .sys), Cell(val: 9, inputType: .sys), Cell(val: 8, inputType: .sys)],
+    [Cell(val: 3, inputType: .sys), Cell(val: 2, inputType: .sys), Cell(val: 1, inputType: .sys), Cell(val: 6, inputType: .sys), Cell(val: 8, inputType: .sys), Cell(val: 5, inputType: .sys), Cell(val: 9, inputType: .sys), Cell(val: 7, inputType: .sys), Cell(val: 4, inputType: .sys)],
+    [Cell(val: 9, inputType: .sys), Cell(val: 8, inputType: .sys), Cell(val: 5, inputType: .sys), Cell(val: 7, inputType: .sys), Cell(val: 3, inputType: .sys), Cell(val: 4, inputType: .sys), Cell(val: 2, inputType: .sys), Cell(val: 6, inputType: .sys), Cell(val: 1, inputType: .sys)],
+    [Cell(val: 6, inputType: .sys), Cell(val: 4, inputType: .sys), Cell(val: 7, inputType: .sys), Cell(val: 2, inputType: .sys), Cell(val: 1, inputType: .sys), Cell(val: 9, inputType: .sys), Cell(val: 8, inputType: .sys), Cell(val: 3, inputType: .user), Cell(val: 5, inputType: .user)]
   ]
   
   // MARK: - Test Functions
