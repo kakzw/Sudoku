@@ -11,6 +11,7 @@ struct GridView: View {
   @ObservedObject var sudoku: SudokuModel
   var frameSize: CGFloat = Screen.cellWidth * 9
   var cellFontSize = FontSize.cell
+  var isSolution = false
   
   var body: some View {
     ZStack {
@@ -35,15 +36,21 @@ struct GridView: View {
           /// iterate through each column
           ForEach(0..<9) { col in
             /// render each cell
-            sudoku.render(row: row, col: col, width: width, fontSize: fontSize)
-              .frame(width: width, height: width)
-              .border(Color.black, width: 1)
-              .padding(.all, 0)
-              .background(sudoku.colorAt(row: row, col: col))
-              .onTapGesture {
-                /// set the tapped cell as active cell
-                sudoku.setActive(row: row, col: col)
-              }
+            sudoku.render(
+              row: row,
+              col: col,
+              width: width,
+              fontSize: fontSize,
+              isSolution: isSolution
+            )
+            .frame(width: width, height: width)
+            .border(Color.black, width: 1)
+            .padding(.all, 0)
+            .background(sudoku.colorAt(row: row, col: col))
+            .onTapGesture {
+              /// set the tapped cell as active cell
+              sudoku.setActive(row: row, col: col)
+            }
           }
         }
       }

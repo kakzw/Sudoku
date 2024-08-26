@@ -10,6 +10,7 @@ import SwiftUI
 struct MenuView: View {
   @Binding var showDifficulties: Bool
   
+  @State private var showStats = false
   @State private var showSettings = false
   
   var body: some View {
@@ -24,9 +25,16 @@ struct MenuView: View {
         .shadow(radius: 10)
       
       // MARK: Menu Buttons
-      MenuButtonsView(showDifficulties: $showDifficulties, showSettings: $showSettings)
+      MenuButtonsView(
+        showDifficulties: $showDifficulties,
+        showStats: $showStats,
+        showSettings: $showSettings
+      )
       
       Spacer()
+    }
+    .navigationDestination(isPresented: $showStats) {
+      StatisticsView()
     }
     .navigationDestination(isPresented: $showSettings) {
       SettingsView()

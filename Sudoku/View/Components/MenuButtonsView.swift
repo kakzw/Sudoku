@@ -9,6 +9,7 @@ import SwiftUI
 
 struct MenuButtonsView: View {
   @Binding var showDifficulties: Bool
+  @Binding var showStats: Bool
   @Binding var showSettings: Bool
   
   var body: some View {
@@ -20,8 +21,17 @@ struct MenuButtonsView: View {
         showDifficulties = true
       }
       
+      // MARK: Statistics Button
+      MenuButtonView(
+        img: "chart.bar.fill",
+        title: "statistics.title") {
+        showStats = true
+      }
+      
       // MARK: Settings Button
-      MenuButtonView(img: "gear", title: "settings.title") {
+      MenuButtonView(
+        img: "gear",
+        title: "settings.title") {
         showSettings = true
       }
     }
@@ -58,5 +68,9 @@ struct MenuButtonView: View {
 }
 
 #Preview {
-  MenuButtonsView(showDifficulties: .constant(false), showSettings: .constant(false))
+  MenuButtonsView(
+    showDifficulties: .constant(false),
+    showStats: .constant(false),
+    showSettings: .constant(false)
+  )
 }

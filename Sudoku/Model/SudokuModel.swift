@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import CoreData
 
 /// Enumeration for the type of input in a sudoku cell
 enum InputType {
@@ -35,7 +36,9 @@ struct CellState {
 
 final class SudokuModel: ObservableObject {
   
-  @Published private var grid: [[Cell]]
+  // MARK: - Variables
+  
+  @Published private var sudoku: [[Cell]]
   @Published var gameCompleted = false
   private var difficulty: Difficulty
   private var solution: [[Cell]]
@@ -50,7 +53,7 @@ final class SudokuModel: ObservableObject {
     self.difficulty = difficulty
     let sudoku = Solutions().getRandomSudoku(difficulty: difficulty)
     self.solution = sudoku
-    self.grid = []
+    self.sudoku = []
     loadGrid(solution: sudoku)  /// load grid with the sudoku puzzle
   }
   
@@ -62,7 +65,9 @@ final class SudokuModel: ObservableObject {
   ///   - col: column of the cell in the sudoku grid
   ///   - width: width of the cell
   /// - Returns: view of the cell
-  func render(row: Int, col: Int, width: CGFloat, fontSize: CGFloat) -> some View {
+  func render(row: Int, col: Int, width: CGFloat, fontSize: CGFloat, isSolution: Bool = false) -> some View {
+    let grid = isSolution ? self.solution : self.sudoku
+    
     let cell = grid[row][col]
     
     /// if no value is inserted in the cell yet, return the note if any
@@ -94,7 +99,7 @@ final class SudokuModel: ObservableObject {
     if row < 0 || row >= 9 { return false }
     if col < 0 || col >= 9 { return false }
     
-    let cell = grid[row][col]
+    let cell = sudoku[row][col]
     
     /// cannot change predefined value
     if cell.inputType == .sys { return false }
@@ -117,19 +122,19 @@ final class SudokuModel: ObservableObject {
     if Settings.shared.isNote {
       /// if value inserted as note is already in the note, remove it
       if cell.note.contains(val) {
-        grid[row][col].note.remove(val)
+        sudoku[row][col].note.remove(val)
       } else {
-        grid[row][col].note.insert(val)
+        sudoku[row][col].note.insert(val)
       }
       return true
     }
     
     /// if the value is wrong, set input type to error and increment error count
     if val == solution[row][col].val {
-      grid[row][col].inputType = .user
+      sudoku[row][col].inputType = .user
       numFrequency[val-1] += 1
     } else {
-      grid[row][col].inputType = .error
+      sudoku[row][col].inputType = .error
       errorCount += 1
     }
     
@@ -139,10 +144,10 @@ final class SudokuModel: ObservableObject {
     }
     
     /// remove notes from the active cell
-    grid[row][col].note.removeAll()
+    sudoku[row][col].note.removeAll()
     
     /// update the cell with new value
-    grid[row][col].val = val
+    sudoku[row][col].val = val
     
     /// highlight the inserted value in the grid
     highlightSameVal(val)
@@ -158,9 +163,9 @@ final class SudokuModel: ObservableObject {
     guard let prevState = prevActionStack.popLast() else { return }
     
     /// reload the previous state
-    grid[prevState.row][prevState.col].val = prevState.val
-    grid[prevState.row][prevState.col].inputType = prevState.inputType
-    grid[prevState.row][prevState.col].note = prevState.note
+    sudoku[prevState.row][prevState.col].val = prevState.val
+    sudoku[prevState.row][prevState.col].inputType = prevState.inputType
+    sudoku[prevState.row][prevState.col].note = prevState.note
     numFrequency = prevState.numFrequency
   }
   
@@ -168,7 +173,7 @@ final class SudokuModel: ObservableObject {
   func autoAddNote() {
     for row in 0..<9 {
       for col in 0..<9 {
-        if grid[row][col].val == UNDEFINED {
+        if sudoku[row][col].val == UNDEFINED {
           addNote(row: row, col: col)
         }
       }
@@ -203,12 +208,12 @@ final class SudokuModel: ObservableObject {
       }
       
       /// if selected cell has value in it, highlight cells that has identical values
-      if Settings.shared.highlightIdenticalNum && grid[row][col].val != UNDEFINED {
-        highlightSameVal(grid[row][col].val)
+      if Settings.shared.highlightIdenticalNum && sudoku[row][col].val != UNDEFINED {
+        highlightSameVal(sudoku[row][col].val)
       }
       
       /// highlight the selected cell
-      grid[row][col].backgroundColor = Colors.ActiveBlue
+      sudoku[row][col].backgroundColor = Colors.ActiveBlue
     }
   }
   
@@ -247,13 +252,17 @@ final class SudokuModel: ObservableObject {
     let col = activeCell.col
     
     /// predefined cell (cell with input type of system) cannot be deleted
-    if grid[row][col].inputType == .sys { return }
+    if sudoku[row][col].inputType == .sys { return }
+    
+    /// if the cell has no value, cannot be deleted
+    if sudoku[row][col].val == UNDEFINED { return }
     
     /// update frequency before deletion
-    let index = grid[row][col].val - 1
+    let index = sudoku[row][col].val - 1
     numFrequency[index] -= 1
+    
     /// perform deletion
-    grid[row][col].val = UNDEFINED
+    sudoku[row][col].val = UNDEFINED
   }
   
   /// Returns background color of a cell at specified position
@@ -262,7 +271,47 @@ final class SudokuModel: ObservableObject {
   ///   - col: column of the cell
   /// - Returns: background color of the cell
   func colorAt(row: Int, col: Int) -> Color {
-    return grid[row][col].backgroundColor
+    return sudoku[row][col].backgroundColor
+  }
+  
+  func saveData(time: Int, fetchResult: FetchedResults<Stats>, context: NSManagedObjectContext) {
+    let won = !Settings.shared.limitErrors || errorCount < 3
+    
+    var prevStats: Stats? = nil
+    for res in fetchResult {
+      if res.difficulty == difficulty.rawValue { prevStats = res }
+    }
+    
+    guard let prevStats = prevStats else {
+      let stats = Statistic(
+        difficulty: difficulty.rawValue,
+        gameStarted: 1, 
+        gameWon: won ? 1 : 0,
+        gameMistake: errorCount == 0 ? 0 : 1,
+        bestTime: time,
+        totalTime: time,
+        currStreak: won ? 1 : 0,
+        bestStreak: won ? 1 : 0
+      )
+      
+      DataController().addStats(stats, context: context)
+      return
+    }
+    
+    DataController().editStats(
+      prevStats,
+      s: Statistic(
+        difficulty: difficulty.rawValue,
+        gameStarted: Int(prevStats.gameStarted) + 1,
+        gameWon: Int(won ? prevStats.gameWon + 1 : prevStats.gameWon),
+        gameMistake: Int(errorCount == 0 ? prevStats.gameMistake : prevStats.gameMistake + 1),
+        bestTime: min(Int(prevStats.bestTime), time),
+        totalTime: Int(prevStats.totalTime) + time,
+        currStreak: won ? Int(prevStats.currStreak) + 1 : 0,
+        bestStreak: Int(won ? (max(prevStats.currStreak+1, prevStats.bestStreak)) : prevStats.bestStreak)
+      ),
+      context: context
+    )
   }
   
   // MARK: - Private Functions
@@ -273,7 +322,7 @@ final class SudokuModel: ObservableObject {
   /// - Parameter solution: solution of current sudoku puzzle
   private func loadGrid(solution: [[Cell]]) {
     /// initialize grid with undefined value and input type of user
-    grid = Array(repeating: Array(repeating: Cell(val: UNDEFINED, inputType: .user), count: 9), count: 9)
+    sudoku = Array(repeating: Array(repeating: Cell(val: UNDEFINED, inputType: .user), count: 9), count: 9)
     
     for row in 0..<9 {
       for col in 0..<9 {
@@ -281,8 +330,8 @@ final class SudokuModel: ObservableObject {
         /// make it same as corresponding solution cell
         /// (assign predefined value and change input type to system)
         if solution[row][col].inputType == .sys {
-          grid[row][col] = solution[row][col]
-          let index = grid[row][col].val - 1
+          sudoku[row][col] = solution[row][col]
+          let index = sudoku[row][col].val - 1
           numFrequency[index] += 1
         }
       }
@@ -338,7 +387,7 @@ final class SudokuModel: ObservableObject {
     for row in 0..<9 {
       for col in 0..<9 {
         /// if any cell's value does not match solution, return false
-        if grid[row][col].val != solution[row][col].val { return false }
+        if sudoku[row][col].val != solution[row][col].val { return false }
       }
     }
     
@@ -353,7 +402,7 @@ final class SudokuModel: ObservableObject {
     /// iterate through all cells and change the background color to default color
     for row in 0..<9 {
       for col in 0..<9 {
-        grid[row][col].backgroundColor = Colors.Default
+        sudoku[row][col].backgroundColor = Colors.Default
       }
     }
   }
@@ -363,7 +412,7 @@ final class SudokuModel: ObservableObject {
   private func highlightRow(_ row: Int) {
     /// in the specified row, iterate through all columns and highlight them
     for col in 0..<9 {
-      grid[row][col].backgroundColor = Colors.LightBlue
+      sudoku[row][col].backgroundColor = Colors.LightBlue
     }
   }
   
@@ -372,7 +421,7 @@ final class SudokuModel: ObservableObject {
   private func highlightCol(_ col: Int) {
     /// iterate through all rows, and highlight specified column
     for row in 0..<9 {
-      grid[row][col].backgroundColor = Colors.LightBlue
+      sudoku[row][col].backgroundColor = Colors.LightBlue
     }
   }
   
@@ -387,7 +436,7 @@ final class SudokuModel: ObservableObject {
     
     for i in 0..<3 {
       for j in 0..<3 {
-        grid[row+i][col+j].backgroundColor = Colors.LightBlue
+        sudoku[row+i][col+j].backgroundColor = Colors.LightBlue
       }
     }
   }
@@ -397,8 +446,8 @@ final class SudokuModel: ObservableObject {
   private func highlightSameVal(_ val: Int) {
     for row in 0..<9 {
       for col in 0..<9 {
-        if grid[row][col].val == val {
-          grid[row][col].backgroundColor = Colors.DeepBlue
+        if sudoku[row][col].val == val {
+          sudoku[row][col].backgroundColor = Colors.DeepBlue
         }
       }
     }
@@ -412,12 +461,12 @@ final class SudokuModel: ObservableObject {
   private func removeValFromNote(val: Int, row: Int, col: Int) {
     /// remove the value from notes in the same row
     for i in 0..<9 {
-      grid[row][i].note.remove(val)
+      sudoku[row][i].note.remove(val)
     }
     
     /// remove the value from notes in the same column
     for i in 0..<9 {
-      grid[i][col].note.remove(val)
+      sudoku[i][col].note.remove(val)
     }
     
     /// remove the value from notes in the same square
@@ -427,7 +476,7 @@ final class SudokuModel: ObservableObject {
     /// iterate through each cell in the square
     for i in 0..<3 {
       for j in 0..<3 {
-        grid[row+i][col+j].note.remove(val)
+        sudoku[row+i][col+j].note.remove(val)
       }
     }
   }
@@ -443,12 +492,12 @@ final class SudokuModel: ObservableObject {
     
     /// remove values already present in the same row from the set of possible values
     for i in 0..<9 {
-      numSet.remove(grid[row][i].val)
+      numSet.remove(sudoku[row][i].val)
     }
     
     /// remove values already present in the same column from the set of possible values
     for i in 0..<9 {
-      numSet.remove(grid[i][col].val)
+      numSet.remove(sudoku[i][col].val)
     }
     
     /// remove values already present in the same 3x3 square from the set of possible values
@@ -457,14 +506,14 @@ final class SudokuModel: ObservableObject {
     let squareCol: Int = (col / 3) * 3
     for i in 0..<3 {
       for j in 0..<3 {
-        numSet.remove(grid[squareRow+i][squareCol+j].val)
+        numSet.remove(sudoku[squareRow+i][squareCol+j].val)
       }
     }
     
     /// add the remaining possible values as notes to the cell
-    grid[row][col].note = []
+    sudoku[row][col].note = []
     for num in numSet {
-      grid[row][col].note.insert(num)
+      sudoku[row][col].note.insert(num)
     }
   }
 }

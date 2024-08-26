@@ -47,7 +47,7 @@ struct GameView: View {
     .navigationDestination(isPresented: $sudoku.gameCompleted) {
       GameCompleteView(
         sudoku: sudoku,
-        time: Helper().formatTime(time)
+        time: time
       )
     }
     .toolbar {

@@ -8,8 +8,12 @@
 import SwiftUI
 
 struct GameCompleteView: View {
+  @Environment(\.managedObjectContext) var managedObjContext
+  
+  @FetchRequest(sortDescriptors: [SortDescriptor(\.difficulty)]) var statsData: FetchedResults<Stats>
+  
   var sudoku: SudokuModel
-  var time: String
+  var time: Int
   
   @State private var startNewGame = false
   @State private var showMainView = false
@@ -25,7 +29,8 @@ struct GameCompleteView: View {
       // MARK: Sudoku Grid
       GridView(sudoku: sudoku,
                frameSize: Screen.cellWidth * 9 * 0.6,
-               cellFontSize: FontSize.cell * 0.6)
+               cellFontSize: FontSize.cell * 0.6,
+               isSolution: true)
       .padding(.vertical)
       
       // MARK: Stats
@@ -50,6 +55,11 @@ struct GameCompleteView: View {
     .navigationDestination(isPresented: $showMainView) {
       ContentView()
     }
+    .onAppear {
+      sudoku.saveData(time: time,
+                      fetchResult: statsData,
+                      context: managedObjContext)
+    }
   }
   
   var stats: some View {
@@ -68,7 +78,7 @@ struct GameCompleteView: View {
         // MARK: Time Stats
         StatsView(img: "clock.fill",
                   title: "info.time",
-                  text: "\(time)")
+                  text: Helper().formatTime(time))
       }
     }
     .padding()
@@ -116,5 +126,5 @@ struct StatsView: View {
 }
 
 #Preview {
-  GameCompleteView(sudoku: SudokuModel(difficulty: .medium), time: "5:50")
+  GameCompleteView(sudoku: SudokuModel(difficulty: .extreme), time: 145)
 }
