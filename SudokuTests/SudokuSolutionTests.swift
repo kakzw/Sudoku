@@ -22,24 +22,12 @@ final class SudokuSolutionTests: XCTestCase {
   
   // MARK: - Test Functions
   
-  /// Test to validate all easy difficulty sudoku solutions
-  func testEasySudoku() {
-    for sudoku in solutions.getSudoku(difficulty: .easy) {
-      validateSolution(of: sudoku)
-    }
-  }
-  
-  /// Test to validate all medium difficulty sudoku solutions
-  func testMediumSudoku() {
-    for sudoku in solutions.getSudoku(difficulty: .medium) {
-      validateSolution(of: sudoku)
-    }
-  }
-  
-  /// Test to validate all hard difficulty sudoku solutions
-  func testHardSudoku() {
-    for sudoku in solutions.getSudoku(difficulty: .hard) {
-      validateSolution(of: sudoku)
+  /// Test to validate all sudoku solutions
+  func testSolutions() {
+    for difficulty in Difficulty.allCases {
+      for sudoku in solutions.getSudoku(difficulty: difficulty) {
+        validateSolution(of: sudoku)
+      }
     }
   }
   
