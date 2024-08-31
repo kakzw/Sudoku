@@ -65,6 +65,8 @@ final class SudokuModel: ObservableObject {
   ///   - row: row of the cell in the sudoku grid
   ///   - col: column of the cell in the sudoku grid
   ///   - width: width of the cell
+  ///   - fontSize: font size to be used for displaying cell's value
+  ///   - isSolution: boolean flag indicating whether to use the solution grid or current sudoku grid
   /// - Returns: view of the cell
   func render(row: Int, col: Int, width: CGFloat, fontSize: CGFloat, isSolution: Bool = false) -> some View {
     let grid = isSolution ? self.solution : self.sudoku
@@ -276,8 +278,11 @@ final class SudokuModel: ObservableObject {
   /// - Parameters:
   ///   - row: row of the cell
   ///   - col: column of the cell
+  ///   - isSolution: boolean flag indicating whether to use the solution grid or current sudoku grid
   /// - Returns: background color of the cell
-  func colorAt(row: Int, col: Int) -> Color {
+  func colorAt(row: Int, col: Int, isSolution: Bool) -> Color {
+    /// if solution, background color should be default color for all cells
+    if isSolution { return Colors.Default }
     return sudoku[row][col].backgroundColor
   }
   

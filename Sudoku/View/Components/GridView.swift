@@ -46,7 +46,7 @@ struct GridView: View {
             .frame(width: width, height: width)
             .border(Color.black, width: 1)
             .padding(.all, 0)
-            .background(sudoku.colorAt(row: row, col: col))
+            .background(sudoku.colorAt(row: row, col: col, isSolution: isSolution))
             .onTapGesture {
               /// set the tapped cell as active cell
               sudoku.setActive(row: row, col: col)
