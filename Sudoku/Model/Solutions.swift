@@ -29,11 +29,11 @@ final class Solutions {
   // - MARK: - Initialization
   
   init() {
-    self.easySudoku = [easy1]
+    self.easySudoku = [easy1, easy2]
     self.mediumSudoku = [medium1, medium2]
-    self.hardSudoku = [hard1]
-    self.expertSudoku = [expert1]
-    self.masterSudoku = [master1]
+    self.hardSudoku = [hard1, hard2]
+    self.expertSudoku = [expert1, expert2, expert3]
+    self.masterSudoku = [master1, master2]
     self.extremeSudoku = [extreme1]
   }
   
@@ -193,6 +193,18 @@ final class Solutions {
     [Cell(val: 4, inputType: .sys), Cell(val: 2, inputType: .user), Cell(val: 7, inputType: .sys), Cell(val: 9, inputType: .user), Cell(val: 1, inputType: .user), Cell(val: 3, inputType: .user), Cell(val: 5, inputType: .sys), Cell(val: 6, inputType: .user), Cell(val: 8, inputType: .sys)],
     [Cell(val: 9, inputType: .user), Cell(val: 1, inputType: .user), Cell(val: 5, inputType: .user), Cell(val: 6, inputType: .user), Cell(val: 8, inputType: .user), Cell(val: 7, inputType: .user), Cell(val: 3, inputType: .user), Cell(val: 4, inputType: .user), Cell(val: 2, inputType: .sys)],
     [Cell(val: 6, inputType: .sys), Cell(val: 8, inputType: .sys), Cell(val: 3, inputType: .user), Cell(val: 2, inputType: .user), Cell(val: 5, inputType: .user), Cell(val: 4, inputType: .user), Cell(val: 1, inputType: .user), Cell(val: 9, inputType: .user), Cell(val: 7, inputType: .user)]
+  ]
+  
+  private let master2: [[Cell]] = [
+    [Cell(val: 7, inputType: .sys), Cell(val: 4, inputType: .sys), Cell(val: 3, inputType: .user), Cell(val: 5, inputType: .user), Cell(val: 9, inputType: .user), Cell(val: 8, inputType: .user), Cell(val: 1, inputType: .user), Cell(val: 6, inputType: .user), Cell(val: 2, inputType: .sys)],
+    [Cell(val: 6, inputType: .sys), Cell(val: 5, inputType: .sys), Cell(val: 8, inputType: .user), Cell(val: 1, inputType: .sys), Cell(val: 3, inputType: .sys), Cell(val: 2, inputType: .sys), Cell(val: 4, inputType: .user), Cell(val: 7, inputType: .user), Cell(val: 9, inputType: .sys)],
+    [Cell(val: 2, inputType: .user), Cell(val: 9, inputType: .user), Cell(val: 1, inputType: .user), Cell(val: 7, inputType: .user), Cell(val: 6, inputType: .user), Cell(val: 4, inputType: .sys), Cell(val: 5, inputType: .user), Cell(val: 3, inputType: .user), Cell(val: 8, inputType: .user)],
+    [Cell(val: 8, inputType: .user), Cell(val: 1, inputType: .user), Cell(val: 5, inputType: .sys), Cell(val: 3, inputType: .user), Cell(val: 4, inputType: .user), Cell(val: 9, inputType: .user), Cell(val: 7, inputType: .sys), Cell(val: 2, inputType: .user), Cell(val: 6, inputType: .user)],
+    [Cell(val: 9, inputType: .sys), Cell(val: 6, inputType: .user), Cell(val: 2, inputType: .sys), Cell(val: 8, inputType: .sys), Cell(val: 7, inputType: .user), Cell(val: 1, inputType: .sys), Cell(val: 3, inputType: .user), Cell(val: 4, inputType: .user), Cell(val: 5, inputType: .user)],
+    [Cell(val: 4, inputType: .user), Cell(val: 3, inputType: .user), Cell(val: 7, inputType: .sys), Cell(val: 2, inputType: .user), Cell(val: 5, inputType: .user), Cell(val: 6, inputType: .user), Cell(val: 8, inputType: .user), Cell(val: 9, inputType: .user), Cell(val: 1, inputType: .sys)],
+    [Cell(val: 3, inputType: .user), Cell(val: 2, inputType: .sys), Cell(val: 4, inputType: .user), Cell(val: 9, inputType: .sys), Cell(val: 1, inputType: .sys), Cell(val: 5, inputType: .sys), Cell(val: 6, inputType: .user), Cell(val: 8, inputType: .user), Cell(val: 7, inputType: .user)],
+    [Cell(val: 5, inputType: .user), Cell(val: 8, inputType: .sys), Cell(val: 6, inputType: .user), Cell(val: 4, inputType: .user), Cell(val: 2, inputType: .sys), Cell(val: 7, inputType: .user), Cell(val: 9, inputType: .user), Cell(val: 1, inputType: .sys), Cell(val: 3, inputType: .user)],
+    [Cell(val: 1, inputType: .sys), Cell(val: 7, inputType: .user), Cell(val: 9, inputType: .user), Cell(val: 6, inputType: .user), Cell(val: 8, inputType: .user), Cell(val: 3, inputType: .sys), Cell(val: 2, inputType: .user), Cell(val: 5, inputType: .sys), Cell(val: 4, inputType: .user)]
   ]
   
   // MARK: - List of extreme sudoku
