@@ -40,6 +40,7 @@ final class SudokuModel: ObservableObject {
   
   @Published private var sudoku: [[Cell]]
   @Published var gameCompleted = false
+  @Published var failed = false
   private var difficulty: Difficulty
   private var solution: [[Cell]]
   private var activeCell: (row: Int, col: Int)? /// currently selected cell
@@ -136,6 +137,12 @@ final class SudokuModel: ObservableObject {
     } else {
       sudoku[row][col].inputType = .error
       errorCount += 1
+      /// if limiting errors and made 3 mistakes, game over
+      if Settings.shared.limitErrors && errorCount >= 3 {
+        failed = true
+        gameCompleted = true
+        return true
+      }
     }
     
     if Settings.shared.autoRemoveNotes {

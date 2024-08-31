@@ -47,6 +47,7 @@ struct GameView: View {
     .navigationDestination(isPresented: $sudoku.gameCompleted) {
       GameCompleteView(
         sudoku: sudoku,
+        failed: sudoku.failed,
         time: time
       )
     }

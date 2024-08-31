@@ -13,6 +13,7 @@ struct GameCompleteView: View {
   @FetchRequest(sortDescriptors: [SortDescriptor(\.difficulty)]) var statsData: FetchedResults<Stats>
   
   var sudoku: SudokuModel
+  var failed: Bool
   var time: Int
   
   @State private var startNewGame = false
@@ -23,8 +24,13 @@ struct GameCompleteView: View {
       Spacer()
       
       // MARK: Title
-      Text("complete.title")
-        .font(.system(size: 40))
+      if failed {
+        Text("complete.fail")
+          .font(.system(size: 40))
+      } else {
+        Text("complete.title")
+          .font(.system(size: 40))
+      }
       
       // MARK: Sudoku Grid
       GridView(sudoku: sudoku,
@@ -126,5 +132,5 @@ struct StatsView: View {
 }
 
 #Preview {
-  GameCompleteView(sudoku: SudokuModel(difficulty: .extreme), time: 145)
+  GameCompleteView(sudoku: SudokuModel(difficulty: .extreme), failed: true, time: 145)
 }
